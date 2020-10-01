@@ -16,8 +16,9 @@ void main() async {
   //Todo: load assets
   Flame.images.loadAll(<String>[
     'buttons.png',
-    'sprite_northWindShrineBG.png'
+    'sprite_northWindShrineBG.png',
     'backyard.png',
+    'logo.png',
   ]);
 
   BFast game = BFast();

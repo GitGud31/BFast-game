@@ -4,19 +4,19 @@ import 'package:flame/sprite.dart';
 
 import '../bfast-game.dart';
 
-class HomeView {
+class Mode3Button {
   final BFast game;
   Rect rect;
   Sprite sprite;
 
-  HomeView(this.game) {
+  Mode3Button(this.game) {
+    sprite = Sprite('buttons.png');
     rect = Rect.fromLTWH(
-      game.tileSize,
-      (game.screenSize.height / 3) - (game.tileSize * 4),
-      game.tileSize * 7,
-      game.tileSize * 4,
+      game.tileSize * 1.5,
+      (game.screenSize.height / 1.43) - (game.tileSize * 1.5),
+      game.tileSize * 6,
+      game.tileSize * 2,
     );
-    sprite = Sprite('logo.png');
   }
 
   void render(Canvas canvas) {
@@ -24,4 +24,6 @@ class HomeView {
   }
 
   void update(double timeDelta) {}
+
+  void onTapDown() {}
 }
