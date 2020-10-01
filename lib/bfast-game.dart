@@ -1,9 +1,11 @@
 import 'dart:ui';
 
-import 'package:BFast/components/home-view.dart';
+import 'package:BFast/views/get-ready-view.dart';
+import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
+import 'package:flutter/gestures.dart';
 
 import 'components/background.dart';
 import 'components/mode2-button.dart';
@@ -20,6 +22,7 @@ class BFast extends Game {
   Views activeView = Views.home;
   HomeView homeView;
   Background background;
+  GetReadyView getReadyView;
 
   //buttons
   Mode1Button mode1Button;
@@ -36,15 +39,15 @@ class BFast extends Game {
     //render views
     background.render(canvas);
     if (activeView == Views.home) homeView.render(canvas);
+    if (activeView == Views.getReady) getReadyView.render(canvas);
 
     //render buttons
-    if (activeView == Views.home){
+    if (activeView == Views.home) {
       mode1Button.render(canvas);
       mode2Button.render(canvas);
       mode3Button.render(canvas);
       mode4Button.render(canvas);
-    } 
-    
+    }
   }
 
   @override
@@ -56,6 +59,7 @@ class BFast extends Game {
     //init views
     background = Background(this);
     homeView = HomeView(this);
+    getReadyView = GetReadyView(this);
 
     //init buttons
     mode1Button = Mode1Button(this);
@@ -67,6 +71,17 @@ class BFast extends Game {
   void resize(Size size) {
     screenSize = size;
     tileSize = screenSize.width / 9;
-    super.resize(size);
+    // super.resize(size);
+  }
+
+  void onTapDown(TapDownDetails d) {
+    bool isHandled = false;
+    
+    if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        mode1Button.onTapDown();
+        isHandled = true;
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:BFast/bfast-game.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 
 void main() async {
@@ -24,5 +25,8 @@ void main() async {
   BFast game = BFast();
   runApp(game.widget);
 
+  TapGestureRecognizer tapGesutureReconizer = TapGestureRecognizer();
+  tapGesutureReconizer.onTapDown = game.onTapDown;
+  flameUtil.addGestureRecognizer(tapGesutureReconizer);
 
 }

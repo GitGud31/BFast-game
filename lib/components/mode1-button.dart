@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 
 import '../bfast-game.dart';
+import '../views.dart';
 
 class Mode1Button {
   final BFast game;
@@ -13,7 +14,7 @@ class Mode1Button {
     sprite = Sprite('buttons.png');
     rect = Rect.fromLTWH(
       game.tileSize * 1.5,
-      (game.screenSize.height /2.1) - (game.tileSize * 1.5),
+      (game.screenSize.height / 2.1) - (game.tileSize * 1.5),
       game.tileSize * 6,
       game.tileSize * 2,
     );
@@ -25,5 +26,9 @@ class Mode1Button {
 
   void update(double timeDelta) {}
 
-  void onTapDown() {}
+  void onTapDown() {
+    print('before: ${game.activeView}');
+    game.activeView = Views.getReady;
+    print('after: ${game.activeView}');
+  }
 }
