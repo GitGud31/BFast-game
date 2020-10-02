@@ -83,7 +83,20 @@ class BFast extends Game {
 
   @override
   void update(double t) {
+    //WAIT
     if (activeView == Views.wait) waitView.update(t);
+
+    //CLICK
+    if (activeView == Views.click) clickView.update(t);
+
+    //GET READY
+    if (activeView == Views.getReady) getReadyView.update(t);
+
+    //TOO SOON 
+    if (activeView == Views.tooSoon) tooSoonView.update(t);
+
+    //SCORE
+    if (activeView == Views.score) scoreView.update(t);
   }
 
   void initialize() async {
