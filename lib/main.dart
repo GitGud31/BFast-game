@@ -20,6 +20,7 @@ void main() async {
     'sprite_northWindShrineBG.png',
     'backyard.png',
     'logo.png',
+    'return_home.png',
   ]);
 
   BFast game = BFast();
