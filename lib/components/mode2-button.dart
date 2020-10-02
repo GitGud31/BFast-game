@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 
 import '../bfast-game.dart';
+import '../views.dart';
 
 class Mode2Button {
   final BFast game;
@@ -25,5 +26,7 @@ class Mode2Button {
 
   void update(double timeDelta) {}
 
-  void onTapDown() {}
+  void onTapDown() {
+    game.activeView = Views.getReady;
+  }
 }

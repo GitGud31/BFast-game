@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
+import 'package:BFast/views/click-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
 import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
+import 'package:BFast/views/too-soon-view.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/gestures.dart';
@@ -14,20 +16,24 @@ import 'components/mode2-button.dart';
 import 'components/mode3-button.dart';
 import 'components/mode4-button.dart';
 import 'views.dart';
+import 'views/score-view.dart';
 import 'views/wait-view.dart';
 
 class BFast extends Game {
-  //screen
+  //Screen
   Size screenSize;
   double tileSize;
 
   //Views
   //TODO: change back to home
-  Views activeView = Views.home;
+  Views activeView = Views.wait;
   Background background;
   HomeView homeView;
   GetReadyView getReadyView;
   WaitView waitView;
+  ClickView clickView;
+  TooSoonView tooSoonView;
+  ScoreView scoreView;
 
   //buttons
   Mode1Button mode1Button;
@@ -63,11 +69,22 @@ class BFast extends Game {
     }
 
     //WAIT
-    if(activeView == Views.wait) waitView.render(canvas);
+    if (activeView == Views.wait) waitView.render(canvas);
+
+    //CLICK
+    if (activeView == Views.click) clickView.render(canvas);
+
+    //TOO SOON
+    if (activeView == Views.tooSoon) tooSoonView.render(canvas);
+
+    //SCORE
+    if (activeView == Views.score) scoreView.render(canvas);
   }
 
   @override
-  void update(double t) {}
+  void update(double t) {
+    if (activeView == Views.wait) waitView.update(t);
+  }
 
   void initialize() async {
     resize(await Flame.util.initialDimensions());
@@ -77,6 +94,9 @@ class BFast extends Game {
     homeView = HomeView(this);
     getReadyView = GetReadyView(this);
     waitView = WaitView(this);
+    clickView = ClickView(this);
+    tooSoonView = TooSoonView(this);
+    scoreView = ScoreView(this);
 
     //init buttons
     mode1Button = Mode1Button(this);

@@ -27,7 +27,6 @@ class StartGameButton {
   void update(double timeDelta) {}
 
   void onTapDown() {
-    //tobe changed/adjusted
     game.activeView = Views.wait;
   }
 }

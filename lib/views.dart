@@ -4,4 +4,5 @@ enum Views{
   score,
   wait,
   click,
+  tooSoon,
 }

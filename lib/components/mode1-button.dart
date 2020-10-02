@@ -26,7 +26,7 @@ class Mode1Button {
 
   void update(double timeDelta) {}
 
-  void onTapDown() {    
+  void onTapDown() {
     game.activeView = Views.getReady;
   }
 }
