@@ -16,11 +16,19 @@ void main() async {
 
   //Todo: load assets
   Flame.images.loadAll(<String>[
-    'buttons.png',
-    'sprite_northWindShrineBG.png',
-    'backyard.png',
+    'click_screen.png',
+    'score_screen.png',
+    'wait_screen.png',
+    'get_ready_screen.png',
+    'home_screen.png',
+    'too_soon_screen.png',
     'logo.png',
-    'return_home.png',
+    'Mode 1.png',
+    'Mode 2.png',
+    'Mode 3.png',
+    'Mode 4.png',
+    'home button.png',
+    'play button.png',
   ]);
 
   BFast game = BFast();
@@ -29,5 +37,4 @@ void main() async {
   TapGestureRecognizer tapGesutureReconizer = TapGestureRecognizer();
   tapGesutureReconizer.onTapDown = game.onTapDown;
   flameUtil.addGestureRecognizer(tapGesutureReconizer);
-
 }

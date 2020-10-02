@@ -16,7 +16,7 @@ class GetReadyView {
       game.screenSize.width,
       game.screenSize.height,
     );
-    sprite = Sprite('backyard.png');
+    sprite = Sprite('get_ready_screen.png');
   }
 
   void render(Canvas canvas) {

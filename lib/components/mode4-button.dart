@@ -10,7 +10,7 @@ class Mode4Button {
   Sprite sprite;
 
   Mode4Button(this.game) {
-    sprite = Sprite('buttons.png');
+    sprite = Sprite('Mode 4.png');
     rect = Rect.fromLTWH(
       game.tileSize * 1.5,
       (game.screenSize.height / 1.235) - (game.tileSize * 1.5),

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:BFast/components/return-home-button.dart';
+import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/views/get-ready-view.dart';
 import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
@@ -13,6 +14,7 @@ import 'components/mode2-button.dart';
 import 'components/mode3-button.dart';
 import 'components/mode4-button.dart';
 import 'views.dart';
+import 'views/wait-view.dart';
 
 class BFast extends Game {
   //screen
@@ -20,11 +22,12 @@ class BFast extends Game {
   double tileSize;
 
   //Views
-  //todo: change back to home
-  Views activeView = Views.getReady;
-  HomeView homeView;
+  //TODO: change back to home
+  Views activeView = Views.home;
   Background background;
+  HomeView homeView;
   GetReadyView getReadyView;
+  WaitView waitView;
 
   //buttons
   Mode1Button mode1Button;
@@ -32,6 +35,7 @@ class BFast extends Game {
   Mode3Button mode3Button;
   Mode4Button mode4Button;
   ReturnHomeButton returnHomeButton;
+  StartGameButton startGameButton;
 
   BFast() {
     initialize();
@@ -51,11 +55,15 @@ class BFast extends Game {
       mode4Button.render(canvas);
     }
 
-    //GET READY SCREEN
+    //GET READY
     if (activeView == Views.getReady) {
       getReadyView.render(canvas);
       returnHomeButton.render(canvas);
+      startGameButton.render(canvas);
     }
+
+    //WAIT
+    if(activeView == Views.wait) waitView.render(canvas);
   }
 
   @override
@@ -68,6 +76,7 @@ class BFast extends Game {
     background = Background(this);
     homeView = HomeView(this);
     getReadyView = GetReadyView(this);
+    waitView = WaitView(this);
 
     //init buttons
     mode1Button = Mode1Button(this);
@@ -75,6 +84,7 @@ class BFast extends Game {
     mode3Button = Mode3Button(this);
     mode4Button = Mode4Button(this);
     returnHomeButton = ReturnHomeButton(this);
+    startGameButton = StartGameButton(this);
   }
 
   void resize(Size size) {
@@ -86,6 +96,7 @@ class BFast extends Game {
   void onTapDown(TapDownDetails d) {
     bool isHandled = false;
 
+    //Mode 1
     if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         mode1Button.onTapDown();
@@ -93,10 +104,18 @@ class BFast extends Game {
       }
     }
 
-    /* print('$isHandled'); */
+    //Return Home
     if (!isHandled && returnHomeButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         returnHomeButton.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Start Game
+    if (!isHandled && startGameButton.rect.contains(d.globalPosition)) {
+      if (activeView == Views.getReady) {
+        startGameButton.onTapDown();
         isHandled = true;
       }
     }

@@ -11,7 +11,7 @@ class ReturnHomeButton {
   Sprite sprite;
 
   ReturnHomeButton(this.game) {
-    sprite = Sprite('return_home.png');
+    sprite = Sprite('home button.png');
     rect = Rect.fromLTWH(
       game.tileSize * 1.5,
       (game.screenSize.height / 1.5) - (game.tileSize * 1.5),

@@ -44,8 +44,16 @@ flutter:
   uses-material-design: true
 
   assets: 
-    - assets/images/buttons.png
-    - assets/images/sprite_northWindShrineBG.png
-    - assets/images/backyard.png
+    - assets/images/click_screen.png
+    - assets/images/home_screen.png
+    - assets/images/wait_screen.png
+    - assets/images/score_screen.png
+    - assets/images/too_soon_screen.png
+    - assets/images/get_ready_screen.png
     - assets/images/logo.png
-    - assets/images/return_home.png
+    - assets/images/play button.png
+    - assets/images/home button.png
+    - assets/images/Mode 1.png
+    - assets/images/Mode 2.png
+    - assets/images/Mode 3.png
+    - assets/images/Mode 4.png

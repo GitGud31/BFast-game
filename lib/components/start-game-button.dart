@@ -5,17 +5,17 @@ import 'package:flame/sprite.dart';
 import '../bfast-game.dart';
 import '../views.dart';
 
-class Mode1Button {
+class StartGameButton {
   final BFast game;
   Rect rect;
   Sprite sprite;
 
-  Mode1Button(this.game) {
-    sprite = Sprite('Mode 1.png');
+  StartGameButton(this.game) {
+    sprite = Sprite('play button.png');
     rect = Rect.fromLTWH(
-      game.tileSize * 1.5,
-      (game.screenSize.height / 2.1) - (game.tileSize * 1.5),
-      game.tileSize * 6,
+      game.tileSize * 5,
+      (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
+      game.tileSize * 2,
       game.tileSize * 2,
     );
   }
@@ -26,7 +26,8 @@ class Mode1Button {
 
   void update(double timeDelta) {}
 
-  void onTapDown() {    
-    game.activeView = Views.getReady;
+  void onTapDown() {
+    //tobe changed/adjusted
+    game.activeView = Views.wait;
   }
 }

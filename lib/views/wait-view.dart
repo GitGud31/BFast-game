@@ -4,18 +4,18 @@ import 'package:flame/sprite.dart';
 
 import '../bfast-game.dart';
 
-class Mode2Button {
+class WaitView {
   final BFast game;
   Rect rect;
   Sprite sprite;
 
-  Mode2Button(this.game) {
-    sprite = Sprite('Mode 2.png');
+  WaitView(this.game) {
+    sprite = Sprite('wait_screen.png');
     rect = Rect.fromLTWH(
-      game.tileSize * 1.5,
-      (game.screenSize.height / 1.7) - (game.tileSize * 1.5),
-      game.tileSize * 6,
-      game.tileSize * 2,
+      0,
+      0,
+      game.screenSize.width,
+      game.screenSize.height,
     );
   }
 
@@ -24,6 +24,4 @@ class Mode2Button {
   }
 
   void update(double timeDelta) {}
-
-  void onTapDown() {}
 }
