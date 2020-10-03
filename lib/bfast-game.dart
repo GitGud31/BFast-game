@@ -140,7 +140,7 @@ class BFast extends Game {
     resize(await Flame.util.initialDimensions());
 
     //init controllers
-    randomTimerController = RandomTimerController(this); 
+    randomTimerController = RandomTimerController(this);
 
     //init views
     background = Background(this);
@@ -174,7 +174,7 @@ class BFast extends Game {
   void onTapDown(TapDownDetails d) {
     bool isHandled = false;
 
-    // dialog boxes
+    //Dialog boxes view
     if (!isHandled) {
       if (activeView == Views.howToPlay || activeView == Views.credits) {
         activeView = Views.home;
@@ -182,7 +182,23 @@ class BFast extends Game {
       }
     }
 
-    //Mode 1
+    //Click view
+    if (!isHandled) {
+      if (activeView == Views.click) {
+        clickView.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Wait view
+    if (!isHandled) {
+      if (activeView == Views.wait) {
+        waitView.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Mode 1 button
     if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         mode1Button.onTapDown();
@@ -190,7 +206,7 @@ class BFast extends Game {
       }
     }
 
-    //Return Home
+    //Return Home button
     if (!isHandled && returnHomeButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         returnHomeButton.onTapDown();
@@ -198,7 +214,7 @@ class BFast extends Game {
       }
     }
 
-    //Start Game
+    //Start Game button
     if (!isHandled && startGameButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         startGameButton.onTapDown();
@@ -206,7 +222,7 @@ class BFast extends Game {
       }
     }
 
-    //Start Game
+    //Start Game button
     if (!isHandled && playAgainButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.score || activeView == Views.tooSoon) {
         playAgainButton.onTapDown();
@@ -214,7 +230,7 @@ class BFast extends Game {
       }
     }
 
-    //How To Play
+    //How To Play button
     if (!isHandled && howToPlayButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         howToPlayButton.onTapDown();
@@ -222,7 +238,7 @@ class BFast extends Game {
       }
     }
 
-    //Credits
+    //Credits button
     if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         creditsButton.onTapDown();

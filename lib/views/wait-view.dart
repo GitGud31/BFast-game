@@ -4,6 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
 import '../bfast-game.dart';
+import '../views.dart';
 
 class WaitView {
   final BFast game;
@@ -27,10 +28,13 @@ class WaitView {
 
   void update(double timeDelta) {
     textPainter.text = TextSpan(text: 'WAIT', style: textStyle);
-
     textPainter.layout();
-
     offset = Offset(game.tileSize * 2.8, game.screenSize.height / 4);
+  }
+
+  void onTapDown() {
+    game.randomTimerController.cancelRandomTimer();
+    game.activeView = Views.tooSoon;
   }
 
   void initText() {

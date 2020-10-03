@@ -4,6 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
 import '../bfast-game.dart';
+import '../views.dart';
 
 class ClickView {
   final BFast game;
@@ -31,6 +32,12 @@ class ClickView {
     textPainter.layout();
 
     offset = Offset(game.tileSize * 2.5, game.screenSize.height / 4);
+  }
+
+  void onTapDown() {
+    //TODO: STOP stopwatch.
+    
+    game.activeView = Views.score;
   }
 
   void initText() {

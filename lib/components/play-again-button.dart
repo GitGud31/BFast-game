@@ -27,6 +27,7 @@ class PlayAgainButton {
   void update(double timeDelta) {}
 
   void onTapDown() {
+    game.randomTimerController.startRandomTimer();
     game.activeView = Views.wait;
   }
 }
