@@ -1,11 +1,15 @@
 import 'dart:ui';
 
+import 'package:BFast/components/credits-button.dart';
+import 'package:BFast/components/how-to-play-button.dart';
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/views/click-view.dart';
+import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
 import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
+import 'package:BFast/views/hot-to-play-view.dart';
 import 'package:BFast/views/too-soon-view.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
@@ -26,7 +30,7 @@ class BFast extends Game {
 
   //Views
   //TODO: change back to home
-  Views activeView = Views.wait;
+  Views activeView = Views.home;
   Background background;
   HomeView homeView;
   GetReadyView getReadyView;
@@ -34,6 +38,8 @@ class BFast extends Game {
   ClickView clickView;
   TooSoonView tooSoonView;
   ScoreView scoreView;
+  HowToPlayView howToPlayView;
+  CreditsView creditsView;
 
   //buttons
   Mode1Button mode1Button;
@@ -42,6 +48,8 @@ class BFast extends Game {
   Mode4Button mode4Button;
   ReturnHomeButton returnHomeButton;
   StartGameButton startGameButton;
+  HowToPlayButton howToPlayButton;
+  CreditsButton creditsButton;
 
   BFast() {
     initialize();
@@ -59,6 +67,8 @@ class BFast extends Game {
       mode2Button.render(canvas);
       mode3Button.render(canvas);
       mode4Button.render(canvas);
+      howToPlayButton.render(canvas);
+      creditsButton.render(canvas);
     }
 
     //GET READY
@@ -79,6 +89,12 @@ class BFast extends Game {
 
     //SCORE
     if (activeView == Views.score) scoreView.render(canvas);
+
+    //HOW TO PLAY
+    if(activeView == Views.howToPlay) howToPlayView.render(canvas);
+
+    //CREDITS
+    if(activeView == Views.credits) creditsView.render(canvas);
   }
 
   @override
@@ -97,6 +113,12 @@ class BFast extends Game {
 
     //SCORE
     if (activeView == Views.score) scoreView.update(t);
+
+    //HOW TO PLAY
+    if (activeView == Views.howToPlay) howToPlayView.update(t);
+
+    //CREDITS
+    if (activeView == Views.credits) creditsView.update(t);
   }
 
   void initialize() async {
@@ -110,6 +132,8 @@ class BFast extends Game {
     clickView = ClickView(this);
     tooSoonView = TooSoonView(this);
     scoreView = ScoreView(this);
+    howToPlayView = HowToPlayView(this);
+    creditsView = CreditsView(this);
 
     //init buttons
     mode1Button = Mode1Button(this);
@@ -118,6 +142,8 @@ class BFast extends Game {
     mode4Button = Mode4Button(this);
     returnHomeButton = ReturnHomeButton(this);
     startGameButton = StartGameButton(this);
+    howToPlayButton = HowToPlayButton(this);
+    creditsButton = CreditsButton(this);
   }
 
   void resize(Size size) {
@@ -128,6 +154,14 @@ class BFast extends Game {
 
   void onTapDown(TapDownDetails d) {
     bool isHandled = false;
+
+    // dialog boxes
+    if (!isHandled) {
+      if (activeView == Views.howToPlay || activeView == Views.credits) {
+        activeView = Views.home;
+        isHandled = true;
+      }
+    }
 
     //Mode 1
     if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
@@ -149,6 +183,22 @@ class BFast extends Game {
     if (!isHandled && startGameButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         startGameButton.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //How To Play
+    if (!isHandled && howToPlayButton.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        howToPlayButton.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Credits
+    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        creditsButton.onTapDown();
         isHandled = true;
       }
     }

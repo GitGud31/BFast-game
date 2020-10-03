@@ -5,4 +5,6 @@ enum Views{
   wait,
   click,
   tooSoon,
+  howToPlay,
+  credits,
 }

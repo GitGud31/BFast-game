@@ -22,6 +22,8 @@ void main() async {
     'get_ready_screen.png',
     'home_screen.png',
     'too_soon_screen.png',
+    'how_to_play_screen.png',
+    'credits_screen.png',
     'logo.png',
     'Mode 1.png',
     'Mode 2.png',

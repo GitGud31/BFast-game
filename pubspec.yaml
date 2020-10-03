@@ -50,6 +50,8 @@ flutter:
     - assets/images/score_screen.png
     - assets/images/too_soon_screen.png
     - assets/images/get_ready_screen.png
+    - assets/images/how_to_play_screen.png
+    - assets/images/credits_screen.png
     - assets/images/logo.png
     - assets/images/play button.png
     - assets/images/home button.png
