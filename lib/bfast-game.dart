@@ -6,6 +6,7 @@ import 'package:BFast/components/play-again-button.dart';
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/controllers/random-timer-controller.dart';
+import 'package:BFast/controllers/stopwatch-controller.dart';
 import 'package:BFast/views/click-view.dart';
 import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
@@ -32,6 +33,7 @@ class BFast extends Game {
 
   //Controllers
   RandomTimerController randomTimerController;
+  StopwatchController stopwatchController;
 
   //Views
   //TODO: change back to home
@@ -88,17 +90,22 @@ class BFast extends Game {
     if (activeView == Views.wait) waitView.render(canvas);
 
     //CLICK
-    if (activeView == Views.click) clickView.render(canvas);
+    if (activeView == Views.click) {
+      stopwatchController.startStopwatch();
+      clickView.render(canvas);
+    }
 
     //TOO SOON
     if (activeView == Views.tooSoon) {
       tooSoonView.render(canvas);
+      returnHomeButton.render(canvas);
       playAgainButton.render(canvas);
     }
 
     //SCORE
     if (activeView == Views.score) {
       scoreView.render(canvas);
+      returnHomeButton.render(canvas);
       playAgainButton.render(canvas);
     }
 
@@ -134,6 +141,9 @@ class BFast extends Game {
 
     //RANDOM TIMER
     randomTimerController.update(t);
+
+    //STOPWATCH
+    stopwatchController.update(t);
   }
 
   void initialize() async {
@@ -141,6 +151,7 @@ class BFast extends Game {
 
     //init controllers
     randomTimerController = RandomTimerController(this);
+    stopwatchController = StopwatchController(this);
 
     //init views
     background = Background(this);
@@ -208,7 +219,9 @@ class BFast extends Game {
 
     //Return Home button
     if (!isHandled && returnHomeButton.rect.contains(d.globalPosition)) {
-      if (activeView == Views.getReady) {
+      if (activeView == Views.getReady ||
+          activeView == Views.tooSoon ||
+          activeView == Views.score) {
         returnHomeButton.onTapDown();
         isHandled = true;
       }
@@ -222,10 +235,11 @@ class BFast extends Game {
       }
     }
 
-    //Start Game button
+    //Play again button
     if (!isHandled && playAgainButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.score || activeView == Views.tooSoon) {
         playAgainButton.onTapDown();
+        stopwatchController.resetStopwatch();
         isHandled = true;
       }
     }

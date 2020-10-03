@@ -26,11 +26,10 @@ class ScoreView {
   }
 
   void update(double timeDelta) {
-    textPainter.text = TextSpan(text: 'Score: ', style: textStyle);
-
+    int score = game.stopwatchController.timeElapsed;
+    textPainter.text = TextSpan(text: 'Score: $score ms', style: textStyle);
     textPainter.layout();
-
-    offset = Offset(game.tileSize * 2.5, game.screenSize.height / 4);
+    offset = Offset(game.tileSize / 2, game.screenSize.height / 4);
   }
 
   void initText() {

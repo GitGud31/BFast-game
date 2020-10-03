@@ -35,8 +35,8 @@ class ClickView {
   }
 
   void onTapDown() {
-    //TODO: STOP stopwatch.
-    
+    game.stopwatchController.stopStopwatch();
+    print('${game.stopwatchController.stopwatch.isRunning}');
     game.activeView = Views.score;
   }
 
