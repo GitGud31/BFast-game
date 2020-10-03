@@ -31,6 +31,7 @@ void main() async {
     'Mode 4.png',
     'home button.png',
     'play button.png',
+    'play again button.png',
   ]);
 
   BFast game = BFast();

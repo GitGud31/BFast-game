@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:BFast/components/credits-button.dart';
 import 'package:BFast/components/how-to-play-button.dart';
+import 'package:BFast/components/play-again-button.dart';
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/views/click-view.dart';
@@ -30,7 +31,7 @@ class BFast extends Game {
 
   //Views
   //TODO: change back to home
-  Views activeView = Views.home;
+  Views activeView = Views.tooSoon;
   Background background;
   HomeView homeView;
   GetReadyView getReadyView;
@@ -48,6 +49,7 @@ class BFast extends Game {
   Mode4Button mode4Button;
   ReturnHomeButton returnHomeButton;
   StartGameButton startGameButton;
+  PlayAgainButton playAgainButton;
   HowToPlayButton howToPlayButton;
   CreditsButton creditsButton;
 
@@ -85,16 +87,22 @@ class BFast extends Game {
     if (activeView == Views.click) clickView.render(canvas);
 
     //TOO SOON
-    if (activeView == Views.tooSoon) tooSoonView.render(canvas);
+    if (activeView == Views.tooSoon) {
+      tooSoonView.render(canvas);
+      playAgainButton.render(canvas);
+    }
 
     //SCORE
-    if (activeView == Views.score) scoreView.render(canvas);
+    if (activeView == Views.score) {
+      scoreView.render(canvas);
+      playAgainButton.render(canvas);
+    }
 
     //HOW TO PLAY
-    if(activeView == Views.howToPlay) howToPlayView.render(canvas);
+    if (activeView == Views.howToPlay) howToPlayView.render(canvas);
 
     //CREDITS
-    if(activeView == Views.credits) creditsView.render(canvas);
+    if (activeView == Views.credits) creditsView.render(canvas);
   }
 
   @override
@@ -108,7 +116,7 @@ class BFast extends Game {
     //GET READY
     if (activeView == Views.getReady) getReadyView.update(t);
 
-    //TOO SOON 
+    //TOO SOON
     if (activeView == Views.tooSoon) tooSoonView.update(t);
 
     //SCORE
@@ -142,6 +150,7 @@ class BFast extends Game {
     mode4Button = Mode4Button(this);
     returnHomeButton = ReturnHomeButton(this);
     startGameButton = StartGameButton(this);
+    playAgainButton = PlayAgainButton(this);
     howToPlayButton = HowToPlayButton(this);
     creditsButton = CreditsButton(this);
   }
@@ -183,6 +192,14 @@ class BFast extends Game {
     if (!isHandled && startGameButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         startGameButton.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Start Game
+    if (!isHandled && playAgainButton.rect.contains(d.globalPosition)) {
+      if (activeView == Views.score || activeView == Views.tooSoon) {
+        playAgainButton.onTapDown();
         isHandled = true;
       }
     }
