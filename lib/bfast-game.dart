@@ -5,6 +5,7 @@ import 'package:BFast/components/how-to-play-button.dart';
 import 'package:BFast/components/play-again-button.dart';
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
+import 'package:BFast/controllers/random-timer-controller.dart';
 import 'package:BFast/views/click-view.dart';
 import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
@@ -29,9 +30,12 @@ class BFast extends Game {
   Size screenSize;
   double tileSize;
 
+  //Controllers
+  RandomTimerController randomTimerController;
+
   //Views
   //TODO: change back to home
-  Views activeView = Views.tooSoon;
+  Views activeView = Views.home;
   Background background;
   HomeView homeView;
   GetReadyView getReadyView;
@@ -127,10 +131,16 @@ class BFast extends Game {
 
     //CREDITS
     if (activeView == Views.credits) creditsView.update(t);
+
+    //RANDOM TIMER
+    randomTimerController.update(t);
   }
 
   void initialize() async {
     resize(await Flame.util.initialDimensions());
+
+    //init controllers
+    randomTimerController = RandomTimerController(this); 
 
     //init views
     background = Background(this);

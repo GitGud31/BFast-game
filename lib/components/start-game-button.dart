@@ -28,5 +28,6 @@ class StartGameButton {
 
   void onTapDown() {
     game.activeView = Views.wait;
+    game.randomTimerController.startRandomTimer();
   }
 }
