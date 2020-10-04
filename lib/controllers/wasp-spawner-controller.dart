@@ -1,19 +1,17 @@
-
-
 import 'package:BFast/views/mode2%20views/wasp.dart';
 
 import '../bfast-game.dart';
 
 class WaspSpawnerController {
   final BFast game;
-  final int maxSpawnInterval = 3000;
+  final int maxSpawnInterval = 1500;
   final int minSpawnInterval = 250;
   final int intervalChange = 3;
   final int maxWaspsOnScreen = 7;
   int currentInterval;
   int nextSpawn;
 
-  WaspSpawnerController(this.game){
+  WaspSpawnerController(this.game) {
     start();
     game.spawnWasp();
   }
@@ -40,9 +38,10 @@ class WaspSpawnerController {
       game.spawnWasp();
       if (currentInterval > minSpawnInterval) {
         currentInterval -= intervalChange;
-        currentInterval -= (currentInterval * .02).toInt();
+        currentInterval -= (currentInterval * .04).toInt();
       }
       nextSpawn = nowTimestamp + currentInterval;
+      print(nextSpawn.toString());
     }
   }
 }

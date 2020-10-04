@@ -65,7 +65,7 @@ class Wasp {
       double stepDistance = speed * timeDelta;
       Offset toTarget = targetLocation - Offset(waspRect.left, waspRect.top);
 
-      if (stepDistance < toTarget.direction) {
+      if (stepDistance < toTarget.distance) {
         Offset stepToTarget =
             Offset.fromDirection(toTarget.direction, stepDistance);
         waspRect = waspRect.shift(stepToTarget);

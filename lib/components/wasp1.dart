@@ -4,7 +4,7 @@ import 'package:flame/sprite.dart';
 import '../bfast-game.dart';
 
 class Wasp1 extends Wasp {
-  double get speed => game.tileSize * 5;
+  double get speed => game.tileSize * 1.5;
 
   Wasp1(BFast game, double x, double y) : super(game) {
     waspRect = Rect.fromLTWH(x, y, game.tileSize * 1, game.tileSize * 1);

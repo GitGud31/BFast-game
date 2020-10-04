@@ -14,7 +14,6 @@ void main() async {
 
   //Todo: SharedPreferences
 
-  //Todo: load assets
   Flame.images.loadAll(<String>[
     'click_screen.png',
     'score_screen.png',

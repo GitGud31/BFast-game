@@ -9,13 +9,13 @@ import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/controllers/random-timer-controller.dart';
 import 'package:BFast/controllers/stopwatch-controller.dart';
-import 'package:BFast/views/mode1%20views/click-view.dart';
+import 'package:BFast/views/mode1%20views/mode1-click-view.dart';
 import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
 import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
 import 'package:BFast/views/hot-to-play-view.dart';
-import 'package:BFast/views/mode1%20views/too-soon-view.dart';
+import 'package:BFast/views/mode1%20views/mode1-too-soon-view.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/gestures.dart';
@@ -31,8 +31,8 @@ import 'components/wasp4.dart';
 import 'components/wasp5.dart';
 import 'controllers/wasp-spawner-controller.dart';
 import 'views.dart';
-import 'views/mode1 views/score-view.dart';
-import 'views/mode1 views/wait-view.dart';
+import 'views/mode1 views/mode1-score-view.dart';
+import 'views/mode1 views/mode1-wait-view.dart';
 import 'views/mode2 views/wasp.dart';
 
 class BFast extends Game {
@@ -78,6 +78,37 @@ class BFast extends Game {
 
   BFast() {
     initialize();
+  }
+
+  void resize(Size size) {
+    screenSize = size;
+    tileSize = screenSize.width / 9;
+    // super.resize(size);
+  }
+
+  void spawnWasp() {
+    double x = random.nextDouble() * (screenSize.width - (tileSize * 2.025));
+    double y =
+        (random.nextDouble() * (screenSize.height - (tileSize * 2.025))) +
+            (tileSize * 1.5);
+
+    switch (random.nextInt(5)) {
+      case 0:
+        wasps.add(Wasp1(this, x, y));
+        break;
+      case 1:
+        wasps.add(Wasp2(this, x, y));
+        break;
+      case 2:
+        wasps.add(Wasp3(this, x, y));
+        break;
+      case 1:
+        wasps.add(Wasp4(this, x, y));
+        break;
+      case 4:
+        wasps.add(Wasp5(this, x, y));
+        break;
+    }
   }
 
   @override
@@ -171,7 +202,6 @@ class BFast extends Game {
 
     //PLAYING (MODE 2)
     if (activeView == Views.playing) {
-      
       waspSpawnerController.update(t);
       wasps.forEach((Wasp wasp) => wasp.update(t));
       wasps.removeWhere((Wasp wasp) => wasp.isOffScreen);
@@ -212,37 +242,6 @@ class BFast extends Game {
     playAgainButton = PlayAgainButton(this);
     howToPlayButton = HowToPlayButton(this);
     creditsButton = CreditsButton(this);
-  }
-
-  void spawnWasp() {
-    double x = random.nextDouble() * (screenSize.width - (tileSize * 2.025));
-    double y =
-        (random.nextDouble() * (screenSize.height - (tileSize * 2.025))) +
-            (tileSize * 1.5);
-
-    switch (random.nextInt(5)) {
-      case 0:
-        wasps.add(Wasp1(this, x, y));
-        break;
-      case 1:
-        wasps.add(Wasp2(this, x, y));
-        break;
-      case 2:
-        wasps.add(Wasp3(this, x, y));
-        break;
-      case 3:
-        wasps.add(Wasp4(this, x, y));
-        break;
-      case 4:
-        wasps.add(Wasp5(this, x, y));
-        break;
-    }
-  }
-
-  void resize(Size size) {
-    screenSize = size;
-    tileSize = screenSize.width / 9;
-    // super.resize(size);
   }
 
   void onTapDown(TapDownDetails d) {
