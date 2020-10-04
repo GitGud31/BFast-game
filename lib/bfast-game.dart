@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:BFast/components/credits-button.dart';
 import 'package:BFast/components/how-to-play-button.dart';
+import 'package:BFast/components/long-grass-background.dart';
 import 'package:BFast/components/play-again-button.dart';
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
@@ -23,9 +24,16 @@ import 'components/background.dart';
 import 'components/mode2-button.dart';
 import 'components/mode3-button.dart';
 import 'components/mode4-button.dart';
+import 'components/wasp1.dart';
+import 'components/wasp2.dart';
+import 'components/wasp3.dart';
+import 'components/wasp4.dart';
+import 'components/wasp5.dart';
+import 'controllers/wasp-spawner-controller.dart';
 import 'views.dart';
 import 'views/mode1 views/score-view.dart';
 import 'views/mode1 views/wait-view.dart';
+import 'views/mode2 views/wasp.dart';
 
 class BFast extends Game {
   //Screen
@@ -33,10 +41,15 @@ class BFast extends Game {
   double tileSize;
 
   Random random;
+  int score;
 
   //Controllers
   RandomTimerController randomTimerController;
   StopwatchController stopwatchController;
+  WaspSpawnerController waspSpawnerController;
+
+  //
+  List<Wasp> wasps;
 
   //Views
   //TODO: change back to home
@@ -50,6 +63,7 @@ class BFast extends Game {
   ScoreView scoreView;
   HowToPlayView howToPlayView;
   CreditsView creditsView;
+  LongGrassBackground longGrassBackground;
 
   //buttons
   Mode1Button mode1Button;
@@ -117,6 +131,13 @@ class BFast extends Game {
 
     //CREDITS
     if (activeView == Views.credits) creditsView.render(canvas);
+
+    //PLAYING
+    //TODO: Tobe changed to playing view
+    if (activeView == Views.playing) {
+      longGrassBackground.render(canvas);
+      wasps.forEach((Wasp wasp) => wasp.render(canvas));
+    }
   }
 
   @override
@@ -147,19 +168,31 @@ class BFast extends Game {
 
     //STOPWATCH
     stopwatchController.update(t);
+
+    //PLAYING (MODE 2)
+    if (activeView == Views.playing) {
+      
+      waspSpawnerController.update(t);
+      wasps.forEach((Wasp wasp) => wasp.update(t));
+      wasps.removeWhere((Wasp wasp) => wasp.isOffScreen);
+    }
   }
 
   void initialize() async {
     random = Random();
-    
+    score = 0;
+    wasps = List<Wasp>();
+
     resize(await Flame.util.initialDimensions());
 
     //init controllers
     randomTimerController = RandomTimerController(this);
     stopwatchController = StopwatchController(this);
+    waspSpawnerController = WaspSpawnerController(this);
 
     //init views
     background = Background(this);
+    longGrassBackground = LongGrassBackground(this);
     homeView = HomeView(this);
     getReadyView = GetReadyView(this);
     waitView = WaitView(this);
@@ -181,6 +214,31 @@ class BFast extends Game {
     creditsButton = CreditsButton(this);
   }
 
+  void spawnWasp() {
+    double x = random.nextDouble() * (screenSize.width - (tileSize * 2.025));
+    double y =
+        (random.nextDouble() * (screenSize.height - (tileSize * 2.025))) +
+            (tileSize * 1.5);
+
+    switch (random.nextInt(5)) {
+      case 0:
+        wasps.add(Wasp1(this, x, y));
+        break;
+      case 1:
+        wasps.add(Wasp2(this, x, y));
+        break;
+      case 2:
+        wasps.add(Wasp3(this, x, y));
+        break;
+      case 3:
+        wasps.add(Wasp4(this, x, y));
+        break;
+      case 4:
+        wasps.add(Wasp5(this, x, y));
+        break;
+    }
+  }
+
   void resize(Size size) {
     screenSize = size;
     tileSize = screenSize.width / 9;
@@ -189,6 +247,23 @@ class BFast extends Game {
 
   void onTapDown(TapDownDetails d) {
     bool isHandled = false;
+
+    //Wasps
+    if (!isHandled) {
+      bool didHitWasp = false;
+      wasps.forEach((Wasp wasp) {
+        if (wasp.waspRect.contains(d.globalPosition)) {
+          wasp.onTapDown();
+          isHandled = true;
+          didHitWasp = true;
+        }
+      });
+      if (activeView == Views.playing && !didHitWasp) {
+        //TODO: Implement SOUND
+
+        activeView = Views.lost;
+      }
+    }
 
     //Dialog boxes view
     if (!isHandled) {
@@ -261,6 +336,14 @@ class BFast extends Game {
     if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         creditsButton.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Mode2 button
+    if (!isHandled && mode2Button.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        mode2Button.onTapDown();
         isHandled = true;
       }
     }

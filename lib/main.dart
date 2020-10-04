@@ -33,6 +33,12 @@ void main() async {
     'play button.png',
     'play again button.png',
     'callout.png',
+    'wasp1.png',
+    'wasp2.png',
+    'wasp3.png',
+    'wasp4.png',
+    'wasp5.png',
+    'long-grass.png',
   ]);
 
   BFast game = BFast();

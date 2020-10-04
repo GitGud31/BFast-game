@@ -27,7 +27,10 @@ class StartGameButton {
   void update(double timeDelta) {}
 
   void onTapDown() {
-    game.activeView = Views.wait;
-    game.randomTimerController.startRandomTimer();
+    /* game.activeView = Views.wait;
+    game.randomTimerController.startRandomTimer(); */
+
+    game.activeView = Views.playing;
+    game.waspSpawnerController.start();
   }
 }

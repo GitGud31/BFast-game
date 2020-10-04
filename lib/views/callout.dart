@@ -30,9 +30,9 @@ class Callout {
     textPainter.paint(canvas, offset);
   }
 
-  void update(double timeDetla) {
+  void update(double timeDelta) {
     if (wasp.game.activeView == Views.playing) {
-      value = value - 0.5 * timeDetla;
+      value = value - 0.5 * timeDelta;
       if (value <= 0) {
         //TODO: Implement sound.
 
