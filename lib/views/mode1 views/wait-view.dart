@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
-import '../bfast-game.dart';
-import '../views.dart';
+import '../../bfast-game.dart';
+import '../../views.dart';
 
 class WaitView {
   final BFast game;

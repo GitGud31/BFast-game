@@ -3,10 +3,9 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
-import '../bfast-game.dart';
-import '../views.dart';
+import '../../bfast-game.dart';
 
-class ClickView {
+class TooSoonView {
   final BFast game;
   Rect rect;
   Sprite sprite;
@@ -15,10 +14,10 @@ class ClickView {
   TextStyle textStyle;
   Offset offset;
 
-  ClickView(this.game) {
+  TooSoonView(this.game) {
     initText();
+    sprite = Sprite('too_soon_screen.png');
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
-    sprite = Sprite('click_screen.png');
   }
 
   void render(Canvas canvas) {
@@ -27,17 +26,11 @@ class ClickView {
   }
 
   void update(double timeDelta) {
-    textPainter.text = TextSpan(text: 'CLICK', style: textStyle);
+    textPainter.text = TextSpan(text: 'TOO EARLY', style: textStyle);
 
     textPainter.layout();
 
-    offset = Offset(game.tileSize * 2.5, game.screenSize.height / 4);
-  }
-
-  void onTapDown() {
-    game.stopwatchController.stopStopwatch();
-    print('${game.stopwatchController.stopwatch.isRunning}');
-    game.activeView = Views.score;
+    offset = Offset(game.tileSize * 1.5, game.screenSize.height / 4);
   }
 
   void initText() {

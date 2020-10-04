@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
-import '../bfast-game.dart';
+import '../../bfast-game.dart';
 
 class ScoreView {
   final BFast game;

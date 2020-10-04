@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:BFast/components/credits-button.dart';
@@ -7,13 +8,13 @@ import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/controllers/random-timer-controller.dart';
 import 'package:BFast/controllers/stopwatch-controller.dart';
-import 'package:BFast/views/click-view.dart';
+import 'package:BFast/views/mode1%20views/click-view.dart';
 import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
 import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
 import 'package:BFast/views/hot-to-play-view.dart';
-import 'package:BFast/views/too-soon-view.dart';
+import 'package:BFast/views/mode1%20views/too-soon-view.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/gestures.dart';
@@ -23,13 +24,15 @@ import 'components/mode2-button.dart';
 import 'components/mode3-button.dart';
 import 'components/mode4-button.dart';
 import 'views.dart';
-import 'views/score-view.dart';
-import 'views/wait-view.dart';
+import 'views/mode1 views/score-view.dart';
+import 'views/mode1 views/wait-view.dart';
 
 class BFast extends Game {
   //Screen
   Size screenSize;
   double tileSize;
+
+  Random random;
 
   //Controllers
   RandomTimerController randomTimerController;
@@ -147,6 +150,8 @@ class BFast extends Game {
   }
 
   void initialize() async {
+    random = Random();
+    
     resize(await Flame.util.initialDimensions());
 
     //init controllers

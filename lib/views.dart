@@ -7,4 +7,7 @@ enum Views{
   tooSoon,
   howToPlay,
   credits,
+
+  playing,
+  lost,
 }
