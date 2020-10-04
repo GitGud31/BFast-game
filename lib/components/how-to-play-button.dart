@@ -11,7 +11,7 @@ class HowToPlayButton {
   Sprite sprite;
 
   HowToPlayButton(this.game) {
-    sprite = Sprite('how_to_play_screen.png');
+    sprite = Sprite('mode_button.png');
     rect = Rect.fromLTWH(
       game.tileSize * .25,
       game.screenSize.height - (game.tileSize * 1.25),

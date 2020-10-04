@@ -38,6 +38,8 @@ void main() async {
     'wasp4.png',
     'wasp5.png',
     'long-grass.png',
+    'mode_button.png',
+    'logo_circle.png',
   ]);
 
   BFast game = BFast();

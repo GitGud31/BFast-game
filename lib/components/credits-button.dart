@@ -11,7 +11,7 @@ class CreditsButton {
   Sprite sprite;
 
   CreditsButton(this.game) {
-    sprite = Sprite('credits_screen.png');
+    sprite = Sprite('mode_button.png');
     rect = Rect.fromLTWH(
       game.screenSize.width - (game.tileSize * 1.25),
       game.screenSize.height - (game.tileSize * 1.25),
