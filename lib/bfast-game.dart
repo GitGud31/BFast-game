@@ -9,6 +9,7 @@ import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';
 import 'package:BFast/controllers/random-timer-controller.dart';
 import 'package:BFast/controllers/stopwatch-controller.dart';
+import 'package:BFast/modes.dart';
 import 'package:BFast/views/mode1%20views/mode1-click-view.dart';
 import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
@@ -16,6 +17,7 @@ import 'package:BFast/views/home-view.dart';
 import 'package:BFast/components/mode1-button.dart';
 import 'package:BFast/views/hot-to-play-view.dart';
 import 'package:BFast/views/mode1%20views/mode1-too-soon-view.dart';
+import 'package:BFast/views/mode2%20views/lost-view.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/gestures.dart';
@@ -54,6 +56,7 @@ class BFast extends Game {
   //Views
   //TODO: change back to home
   Views activeView = Views.home;
+  Modes activeMode = Modes.mode0;
   Background background;
   HomeView homeView;
   GetReadyView getReadyView;
@@ -64,6 +67,7 @@ class BFast extends Game {
   HowToPlayView howToPlayView;
   CreditsView creditsView;
   LongGrassBackground longGrassBackground;
+  LostView lostView;
 
   //buttons
   Mode1Button mode1Button;
@@ -169,6 +173,13 @@ class BFast extends Game {
       longGrassBackground.render(canvas);
       wasps.forEach((Wasp wasp) => wasp.render(canvas));
     }
+
+    //LOST
+    if (activeView == Views.lost) {
+      lostView.render(canvas);
+      returnHomeButton.render(canvas);
+      playAgainButton.render(canvas);
+    }
   }
 
   @override
@@ -206,6 +217,13 @@ class BFast extends Game {
       wasps.forEach((Wasp wasp) => wasp.update(t));
       wasps.removeWhere((Wasp wasp) => wasp.isOffScreen);
     }
+
+    //LOST (MODE 2)
+    if (activeView == Views.lost) {
+      lostView.update(t);
+      wasps.forEach((Wasp wasp) => wasp.isDead = true);
+      wasps.removeWhere((Wasp wasp) => wasp.isOffScreen);
+    }
   }
 
   void initialize() async {
@@ -231,6 +249,7 @@ class BFast extends Game {
     scoreView = ScoreView(this);
     howToPlayView = HowToPlayView(this);
     creditsView = CreditsView(this);
+    lostView = LostView(this);
 
     //init buttons
     mode1Button = Mode1Button(this);
@@ -291,7 +310,35 @@ class BFast extends Game {
     //Mode 1 button
     if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
+        activeMode = Modes.mode1;
         mode1Button.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Mode 2 button
+    if (!isHandled && mode2Button.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        activeMode = Modes.mode2;
+        mode2Button.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Mode 3 button
+    if (!isHandled && mode3Button.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        activeMode = Modes.mode3;
+        mode3Button.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    //Mode 4 button
+    if (!isHandled && mode4Button.rect.contains(d.globalPosition)) {
+      if (activeView == Views.home) {
+        activeMode = Modes.mode4;
+        mode4Button.onTapDown();
         isHandled = true;
       }
     }
@@ -300,7 +347,8 @@ class BFast extends Game {
     if (!isHandled && returnHomeButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady ||
           activeView == Views.tooSoon ||
-          activeView == Views.score) {
+          activeView == Views.score ||
+          activeView == Views.lost) {
         returnHomeButton.onTapDown();
         isHandled = true;
       }
@@ -315,10 +363,12 @@ class BFast extends Game {
     }
 
     //Play again button
+    //TODO: add mode check
     if (!isHandled && playAgainButton.rect.contains(d.globalPosition)) {
-      if (activeView == Views.score || activeView == Views.tooSoon) {
+      if (activeView == Views.score ||
+          activeView == Views.tooSoon ||
+          activeView == Views.lost) {
         playAgainButton.onTapDown();
-        stopwatchController.resetStopwatch();
         isHandled = true;
       }
     }

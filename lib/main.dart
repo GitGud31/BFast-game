@@ -40,6 +40,7 @@ void main() async {
     'long-grass.png',
     'mode_button.png',
     'logo_circle.png',
+    'lost_screen.png',
   ]);
 
   BFast game = BFast();
