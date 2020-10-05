@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+//TODO: Make one export file of each folder
 import 'package:BFast/components/credits-button.dart';
 import 'package:BFast/components/how-to-play-button.dart';
 import 'package:BFast/components/long-grass-background.dart';
@@ -168,7 +169,6 @@ class BFast extends Game {
     if (activeView == Views.credits) creditsView.render(canvas);
 
     //PLAYING
-    //TODO: Tobe changed to playing view
     if (activeView == Views.playing) {
       longGrassBackground.render(canvas);
       wasps.forEach((Wasp wasp) => wasp.render(canvas));
@@ -267,6 +267,46 @@ class BFast extends Game {
     bool isHandled = false;
 
     //Wasps
+    waspOnTapDownHandler(isHandled, d);
+
+    //Dialog boxes view
+    dialBoxOnTapDownHandler(isHandled, d);
+
+    //Click view
+    clickViewOnTapDownHandler(isHandled, d);
+
+    //Wait view
+    waitViewOnTapDownHandler(isHandled, d);
+
+    //Mode 1 button
+    mode1ButtonOnTapDownHandler(isHandled, d);
+
+    //Mode 2 button
+    mode2ButtonOnTapDownHandler(isHandled, d);
+
+    //Mode 3 button
+    mode3ButtonOnTapDownHandler(isHandled, d);
+
+    //Mode 4 button
+    mode4ButtonOnTapDownHandler(isHandled, d);
+
+    //Return Home button
+    returnHomeButtonOnTapDownHandler(isHandled, d);
+
+    //Start Game button
+    startGameButtonOnTapDownHandler(isHandled, d);
+
+    //Play again button
+    playAgainButtonOnTapDownHandler(isHandled, d);
+
+    //How To Play button
+    howToPlayButtonOnTapDownHandler(isHandled, d);
+
+    //Credits button
+    creditsButtonOnTapDownHandler(isHandled, d);
+  }
+
+  void waspOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled) {
       bool didHitWasp = false;
       wasps.forEach((Wasp wasp) {
@@ -282,32 +322,36 @@ class BFast extends Game {
         activeView = Views.lost;
       }
     }
+  }
 
-    //Dialog boxes view
+  void dialBoxOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled) {
       if (activeView == Views.howToPlay || activeView == Views.credits) {
         activeView = Views.home;
         isHandled = true;
       }
     }
+  }
 
-    //Click view
+  void clickViewOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled) {
       if (activeView == Views.click) {
         clickView.onTapDown();
         isHandled = true;
       }
     }
+  }
 
-    //Wait view
+  void waitViewOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled) {
       if (activeView == Views.wait) {
         waitView.onTapDown();
         isHandled = true;
       }
     }
+  }
 
-    //Mode 1 button
+  void mode1ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode1;
@@ -315,8 +359,9 @@ class BFast extends Game {
         isHandled = true;
       }
     }
+  }
 
-    //Mode 2 button
+  void mode2ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && mode2Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode2;
@@ -324,8 +369,9 @@ class BFast extends Game {
         isHandled = true;
       }
     }
+  }
 
-    //Mode 3 button
+  void mode3ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && mode3Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode3;
@@ -333,8 +379,9 @@ class BFast extends Game {
         isHandled = true;
       }
     }
+  }
 
-    //Mode 4 button
+  void mode4ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && mode4Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode4;
@@ -342,8 +389,9 @@ class BFast extends Game {
         isHandled = true;
       }
     }
+  }
 
-    //Return Home button
+  void returnHomeButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && returnHomeButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady ||
           activeView == Views.tooSoon ||
@@ -353,16 +401,18 @@ class BFast extends Game {
         isHandled = true;
       }
     }
+  }
 
-    //Start Game button
+  void startGameButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && startGameButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         startGameButton.onTapDown();
         isHandled = true;
       }
     }
+  }
 
-    //Play again button
+  void playAgainButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     //TODO: add mode check
     if (!isHandled && playAgainButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.score ||
@@ -372,29 +422,25 @@ class BFast extends Game {
         isHandled = true;
       }
     }
+  }
 
-    //How To Play button
+  void howToPlayButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && howToPlayButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         howToPlayButton.onTapDown();
         isHandled = true;
       }
     }
+  }
 
-    //Credits button
+  void creditsButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
     if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         creditsButton.onTapDown();
         isHandled = true;
       }
     }
-
-    //Mode2 button
-    if (!isHandled && mode2Button.rect.contains(d.globalPosition)) {
-      if (activeView == Views.home) {
-        mode2Button.onTapDown();
-        isHandled = true;
-      }
-    }
   }
+
+  //
 }

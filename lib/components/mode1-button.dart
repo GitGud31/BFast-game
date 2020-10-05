@@ -11,12 +11,12 @@ class Mode1Button {
   Sprite sprite;
 
   Mode1Button(this.game) {
-    sprite = Sprite('Mode 1.png');
+    sprite = Sprite('mode_button.png');
     rect = Rect.fromLTWH(
-      game.tileSize * 1.5,
-      (game.screenSize.height / 2.1) - (game.tileSize * 1.5),
-      game.tileSize * 6,
       game.tileSize * 2,
+      (game.screenSize.height / 3),
+      game.tileSize * 3.4,
+      game.tileSize * 3,
     );
   }
 

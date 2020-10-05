@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:BFast/bfast-game.dart';
 import 'package:flame/sprite.dart';
-
-import '../modes.dart';
 import '../views.dart';
 
 class ReturnHomeButton {
