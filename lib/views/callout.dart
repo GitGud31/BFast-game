@@ -4,6 +4,7 @@ import 'package:BFast/components/wasp.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
+import '../bfast-game.dart';
 import '../views.dart';
 
 class Callout {
@@ -36,6 +37,11 @@ class Callout {
       if (value <= 0) {
         //TODO: Implement sound.
 
+        wasp.game.lives -= 1;
+        wasp.isDead = true;
+      }
+
+      if (wasp.game.lives == 0) {
         wasp.game.activeView = Views.lost;
       }
 

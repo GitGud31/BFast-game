@@ -38,11 +38,13 @@ class PlayAgainButton {
       game.waspSpawnerController.start();
       game.activeView = Views.playing;
       game.score = 0;
+      game.lives = 3;
     }
 
     //TODO
     if (game.activeMode == Modes.mode3) {
       game.score = 0;
+      game.lives = 3;
     }
 
     //TODO

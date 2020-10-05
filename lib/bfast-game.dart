@@ -4,6 +4,7 @@ import 'dart:ui';
 //TODO: Make one export file of each folder
 import 'package:BFast/components/credits-button.dart';
 import 'package:BFast/components/how-to-play-button.dart';
+import 'package:BFast/components/lives-display.dart';
 import 'package:BFast/components/long-grass-background.dart';
 import 'package:BFast/components/play-again-button.dart';
 import 'package:BFast/components/return-home-button.dart';
@@ -48,6 +49,7 @@ class BFast extends Game {
 
   Random random;
   int score;
+  int lives;
 
   //Controllers
   RandomTimerController randomTimerController;
@@ -90,6 +92,7 @@ class BFast extends Game {
   //score
   ScoreDisplay scoreDisplay;
   HighscoreDisplay highscoreDisplay;
+  LivesDisplay livesDisplay;
 
   BFast(this.sharedPreferences) {
     initialize();
@@ -184,6 +187,7 @@ class BFast extends Game {
       wasps.forEach((Wasp wasp) => wasp.render(canvas));
       scoreDisplay.render(canvas);
       highscoreDisplay.render(canvas);
+      livesDisplay.render(canvas);
     }
 
     //LOST
@@ -197,7 +201,10 @@ class BFast extends Game {
   @override
   void update(double t) {
     //SCORE
-    if (activeView == Views.playing) scoreDisplay.update(t);
+    if (activeView == Views.playing) {
+      scoreDisplay.update(t);
+      livesDisplay.update(t);
+    }
 
     //WAIT
     if (activeView == Views.wait) waitView.update(t);
@@ -244,6 +251,7 @@ class BFast extends Game {
   void initialize() async {
     random = Random();
     score = 0;
+    lives = 3;
     wasps = List<Wasp>();
 
     resize(await Flame.util.initialDimensions());
@@ -251,6 +259,7 @@ class BFast extends Game {
     //score
     scoreDisplay = ScoreDisplay(this);
     highscoreDisplay = HighscoreDisplay(this);
+    livesDisplay = LivesDisplay(this);
 
     //init controllers
     randomTimerController = RandomTimerController(this);
@@ -338,7 +347,8 @@ class BFast extends Game {
       if (activeView == Views.playing && !didHitWasp) {
         //TODO: Implement SOUND
 
-        activeView = Views.lost;
+        lives -= 1;
+        if (lives == 0) activeView = Views.lost;
       }
     }
   }
