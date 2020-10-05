@@ -1,4 +1,4 @@
-import 'package:BFast/views/mode2%20views/wasp.dart';
+import 'package:BFast/components/wasp.dart';
 
 import '../bfast-game.dart';
 

@@ -22,11 +22,14 @@ import 'package:BFast/views/mode2%20views/lost-view.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/gestures.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/background.dart';
+import 'components/display-highscore.dart';
 import 'components/mode2-button.dart';
 import 'components/mode3-button.dart';
 import 'components/mode4-button.dart';
+import 'components/score-display.dart';
 import 'components/wasp1.dart';
 import 'components/wasp2.dart';
 import 'components/wasp3.dart';
@@ -36,7 +39,7 @@ import 'controllers/wasp-spawner-controller.dart';
 import 'views.dart';
 import 'views/mode1 views/mode1-score-view.dart';
 import 'views/mode1 views/mode1-wait-view.dart';
-import 'views/mode2 views/wasp.dart';
+import 'components/wasp.dart';
 
 class BFast extends Game {
   //Screen
@@ -53,6 +56,9 @@ class BFast extends Game {
 
   //
   List<Wasp> wasps;
+
+  //Shared preferences
+  final SharedPreferences sharedPreferences;
 
   //Views
   //TODO: change back to home
@@ -81,7 +87,11 @@ class BFast extends Game {
   HowToPlayButton howToPlayButton;
   CreditsButton creditsButton;
 
-  BFast() {
+  //score
+  ScoreDisplay scoreDisplay;
+  HighscoreDisplay highscoreDisplay;
+
+  BFast(this.sharedPreferences) {
     initialize();
   }
 
@@ -172,6 +182,8 @@ class BFast extends Game {
     if (activeView == Views.playing) {
       longGrassBackground.render(canvas);
       wasps.forEach((Wasp wasp) => wasp.render(canvas));
+      scoreDisplay.render(canvas);
+      highscoreDisplay.render(canvas);
     }
 
     //LOST
@@ -184,6 +196,9 @@ class BFast extends Game {
 
   @override
   void update(double t) {
+    //SCORE
+    if (activeView == Views.playing) scoreDisplay.update(t);
+
     //WAIT
     if (activeView == Views.wait) waitView.update(t);
 
@@ -232,6 +247,10 @@ class BFast extends Game {
     wasps = List<Wasp>();
 
     resize(await Flame.util.initialDimensions());
+
+    //score
+    scoreDisplay = ScoreDisplay(this);
+    highscoreDisplay = HighscoreDisplay(this);
 
     //init controllers
     randomTimerController = RandomTimerController(this);

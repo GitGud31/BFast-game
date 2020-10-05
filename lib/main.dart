@@ -4,6 +4,7 @@ import 'package:flame/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,7 @@ void main() async {
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
   //Todo: SharedPreferences
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
   Flame.images.loadAll(<String>[
     'click_screen.png',
@@ -43,7 +45,7 @@ void main() async {
     'lost_screen.png',
   ]);
 
-  BFast game = BFast();
+  BFast game = BFast(sharedPreferences);
   runApp(game.widget);
 
   TapGestureRecognizer tapGesutureReconizer = TapGestureRecognizer();

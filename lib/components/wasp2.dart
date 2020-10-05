@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:BFast/views/mode2%20views/wasp.dart';
+import 'package:BFast/components/wasp.dart';
 import 'package:flame/sprite.dart';
 import '../bfast-game.dart';
 

@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:BFast/views/callout.dart';
 import 'package:flame/sprite.dart';
 
-import '../../bfast-game.dart';
-import '../../views.dart';
+import '../bfast-game.dart';
+import '../views.dart';
 
 class Wasp {
   final BFast game;
@@ -79,7 +79,6 @@ class Wasp {
   }
 
   void onTapDown() {
-    
     if (!isDead) {
       //TODO: Implement sound
 
@@ -88,7 +87,10 @@ class Wasp {
       if (game.activeView == Views.playing) {
         game.score += 1;
 
-        //TODO: implement highscore + saving it.
+        if (game.score > (game.sharedPreferences.getInt('highscore') ?? 0)) {
+          game.sharedPreferences.setInt('highscore', game.score);
+          game.highscoreDisplay.updateHighscore();
+        }
       }
     }
   }
