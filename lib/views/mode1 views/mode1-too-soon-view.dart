@@ -16,7 +16,7 @@ class TooSoonView {
 
   TooSoonView(this.game) {
     initText();
-    sprite = Sprite('too_soon_screen.png');
+    sprite = Sprite('score_toosoon_screen.png');
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
   }
 

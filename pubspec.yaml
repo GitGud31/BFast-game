@@ -47,8 +47,7 @@ flutter:
     - assets/images/click_screen.png
     - assets/images/home_screen.png
     - assets/images/wait_screen.png
-    - assets/images/score_screen.png
-    - assets/images/too_soon_screen.png
+    - assets/images/score_toosoon_screen.png
     - assets/images/get_ready_screen.png
     - assets/images/how_to_play_screen.png
     - assets/images/credits_screen.png
@@ -70,3 +69,7 @@ flutter:
     - assets/images/mode_button.png
     - assets/images/logo_circle.png
     - assets/images/lost_screen.png
+    - assets/images/sad_bee.png
+    - assets/images/good_job_bee.png
+    - assets/images/long_button.png
+    - assets/images/play_again_button.png

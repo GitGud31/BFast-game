@@ -10,7 +10,7 @@ class ReturnHomeButton {
   Sprite sprite;
 
   ReturnHomeButton(this.game) {
-    sprite = Sprite('home button.png');
+    sprite = Sprite('long_button.png');
     rect = Rect.fromLTWH(
       game.tileSize * 1.5,
       (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
@@ -26,6 +26,7 @@ class ReturnHomeButton {
   void update(double dimeDetla) {}
 
   void onTapDown() {
+    //TODO: THIS is causing a problem in mode1 (wait screen). Add check to ignore tap while in that screen.
     game.activeView = Views.home;
     print('${game.activeView}');
   }

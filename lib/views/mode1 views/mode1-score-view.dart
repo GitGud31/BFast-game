@@ -17,7 +17,7 @@ class ScoreView {
   ScoreView(this.game) {
     initText();
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
-    sprite = Sprite('score_screen.png');
+    sprite = Sprite('score_toosoon_screen.png');
   }
 
   void render(Canvas canvas) {

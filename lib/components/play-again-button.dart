@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:flutter/material.dart';
 
 import '../bfast-game.dart';
 import '../modes.dart';
@@ -12,13 +13,12 @@ class PlayAgainButton {
   Sprite sprite;
 
   PlayAgainButton(this.game) {
-    sprite = Sprite('play again button.png');
+    sprite = Sprite('play_again_button.png', x: 0, y: 0);
     rect = Rect.fromLTWH(
-      game.tileSize * 5,
-      (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
-      game.tileSize * 2,
-      game.tileSize * 2,
-    );
+        game.tileSize * 5,
+        (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
+        game.tileSize * 2.5,
+        game.tileSize * 2.5);
   }
 
   void render(Canvas canvas) {

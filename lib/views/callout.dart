@@ -4,7 +4,6 @@ import 'package:BFast/components/wasp.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
-import '../bfast-game.dart';
 import '../views.dart';
 
 class Callout {

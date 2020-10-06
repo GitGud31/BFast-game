@@ -18,11 +18,10 @@ void main() async {
 
   Flame.images.loadAll(<String>[
     'click_screen.png',
-    'score_screen.png',
+    'score_toosoon_screen.png',
     'wait_screen.png',
     'get_ready_screen.png',
     'home_screen.png',
-    'too_soon_screen.png',
     'how_to_play_screen.png',
     'credits_screen.png',
     'logo.png',
@@ -43,6 +42,10 @@ void main() async {
     'mode_button.png',
     'logo_circle.png',
     'lost_screen.png',
+    'sad_bee.png',
+    'good_job_bee.png',
+    'long_button.png',
+    'play_again_button.png',
   ]);
 
   BFast game = BFast(sharedPreferences);
