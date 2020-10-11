@@ -10,9 +10,8 @@ class Wasp4 extends Wasp {
     waspRect = Rect.fromLTWH(x, y, game.tileSize * 1, game.tileSize * 1);
     flyingWasps = List<Sprite>();
 
-    //TODO: add proper assets
-    flyingWasps.add(Sprite('wasp4.png'));
-    flyingWasps.add(Sprite('wasp4.png'));
-    deadWaspSprite = Sprite('wasp4.png');
+    flyingWasps.add(Sprite('wasp4_wing_up.png'));
+    flyingWasps.add(Sprite('wasp4_wing_down.png'));
+    deadWaspSprite = Sprite('wasp4_dead.png');
   }
 }

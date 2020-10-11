@@ -51,7 +51,6 @@ flutter:
     - assets/images/get_ready_screen.png
     - assets/images/how_to_play_screen.png
     - assets/images/credits_screen.png
-    - assets/images/logo.png
     - assets/images/play button.png
     - assets/images/play again button.png
     - assets/images/home button.png
@@ -60,10 +59,18 @@ flutter:
     - assets/images/Mode 3.png
     - assets/images/Mode 4.png
     - assets/images/callout.png
-    - assets/images/wasp1.png
-    - assets/images/wasp2.png
-    - assets/images/wasp3.png
-    - assets/images/wasp4.png
+    - assets/images/wasp1_wing_up.png
+    - assets/images/wasp1_wing_down.png
+    - assets/images/wasp1_dead.png
+    - assets/images/wasp2_wing_up.png
+    - assets/images/wasp2_wing_down.png
+    - assets/images/wasp2_dead.png
+    - assets/images/wasp3_wing_up.png
+    - assets/images/wasp3_wing_down.png
+    - assets/images/wasp3_dead.png
+    - assets/images/wasp4_wing_up.png
+    - assets/images/wasp4_wing_down.png
+    - assets/images/wasp4_dead.png
     - assets/images/wasp5.png
     - assets/images/long-grass.png
     - assets/images/mode_button.png

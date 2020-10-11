@@ -50,6 +50,7 @@ class BFast extends Game {
   Random random;
   int score;
   int lives;
+  bool isHandled = false;
 
   //Controllers
   RandomTimerController randomTimerController;
@@ -292,49 +293,49 @@ class BFast extends Game {
   }
 
   void onTapDown(TapDownDetails d) {
-    bool isHandled = false;
+    isHandled = false;
 
     //Wasps
-    waspOnTapDownHandler(isHandled, d);
+    waspOnTapDownHandler(d);
 
     //Dialog boxes view
-    dialBoxOnTapDownHandler(isHandled, d);
+    dialBoxOnTapDownHandler(d);
 
     //Click view
-    clickViewOnTapDownHandler(isHandled, d);
+    clickViewOnTapDownHandler(d);
 
     //Wait view
-    waitViewOnTapDownHandler(isHandled, d);
+    waitViewOnTapDownHandler(d);
 
     //Mode 1 button
-    mode1ButtonOnTapDownHandler(isHandled, d);
+    mode1ButtonOnTapDownHandler(d);
 
     //Mode 2 button
-    mode2ButtonOnTapDownHandler(isHandled, d);
+    mode2ButtonOnTapDownHandler(d);
 
     //Mode 3 button
-    mode3ButtonOnTapDownHandler(isHandled, d);
+    mode3ButtonOnTapDownHandler(d);
 
     //Mode 4 button
-    mode4ButtonOnTapDownHandler(isHandled, d);
+    mode4ButtonOnTapDownHandler(d);
 
     //Return Home button
-    returnHomeButtonOnTapDownHandler(isHandled, d);
+    returnHomeButtonOnTapDownHandler(d);
 
     //Start Game button
-    startGameButtonOnTapDownHandler(isHandled, d);
+    startGameButtonOnTapDownHandler(d);
 
     //Play again button
-    playAgainButtonOnTapDownHandler(isHandled, d);
+    playAgainButtonOnTapDownHandler(d);
 
     //How To Play button
-    howToPlayButtonOnTapDownHandler(isHandled, d);
+    howToPlayButtonOnTapDownHandler(d);
 
     //Credits button
-    creditsButtonOnTapDownHandler(isHandled, d);
+    creditsButtonOnTapDownHandler(d);
   }
 
-  void waspOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void waspOnTapDownHandler(TapDownDetails d) {
     if (!isHandled) {
       bool didHitWasp = false;
       wasps.forEach((Wasp wasp) {
@@ -353,7 +354,7 @@ class BFast extends Game {
     }
   }
 
-  void dialBoxOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void dialBoxOnTapDownHandler(TapDownDetails d) {
     if (!isHandled) {
       if (activeView == Views.howToPlay || activeView == Views.credits) {
         activeView = Views.home;
@@ -362,7 +363,7 @@ class BFast extends Game {
     }
   }
 
-  void clickViewOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void clickViewOnTapDownHandler(TapDownDetails d) {
     if (!isHandled) {
       if (activeView == Views.click) {
         clickView.onTapDown();
@@ -371,7 +372,7 @@ class BFast extends Game {
     }
   }
 
-  void waitViewOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void waitViewOnTapDownHandler(TapDownDetails d) {
     if (!isHandled) {
       if (activeView == Views.wait) {
         waitView.onTapDown();
@@ -380,7 +381,7 @@ class BFast extends Game {
     }
   }
 
-  void mode1ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void mode1ButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && mode1Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode1;
@@ -390,7 +391,7 @@ class BFast extends Game {
     }
   }
 
-  void mode2ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void mode2ButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && mode2Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode2;
@@ -400,7 +401,7 @@ class BFast extends Game {
     }
   }
 
-  void mode3ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void mode3ButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && mode3Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode3;
@@ -410,7 +411,7 @@ class BFast extends Game {
     }
   }
 
-  void mode4ButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void mode4ButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && mode4Button.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         activeMode = Modes.mode4;
@@ -420,7 +421,7 @@ class BFast extends Game {
     }
   }
 
-  void returnHomeButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void returnHomeButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && returnHomeButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady ||
           activeView == Views.tooSoon ||
@@ -432,7 +433,7 @@ class BFast extends Game {
     }
   }
 
-  void startGameButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void startGameButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && startGameButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.getReady) {
         startGameButton.onTapDown();
@@ -441,7 +442,7 @@ class BFast extends Game {
     }
   }
 
-  void playAgainButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void playAgainButtonOnTapDownHandler(TapDownDetails d) {
     //TODO: add mode check
     if (!isHandled && playAgainButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.score ||
@@ -453,7 +454,7 @@ class BFast extends Game {
     }
   }
 
-  void howToPlayButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void howToPlayButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && howToPlayButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         howToPlayButton.onTapDown();
@@ -462,7 +463,7 @@ class BFast extends Game {
     }
   }
 
-  void creditsButtonOnTapDownHandler(bool isHandled, TapDownDetails d) {
+  void creditsButtonOnTapDownHandler(TapDownDetails d) {
     if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
       if (activeView == Views.home) {
         creditsButton.onTapDown();

@@ -26,8 +26,6 @@ class ReturnHomeButton {
   void update(double dimeDetla) {}
 
   void onTapDown() {
-    //TODO: THIS is causing a problem in mode1 (wait screen). Add check to ignore tap while in that screen.
     game.activeView = Views.home;
-    print('${game.activeView}');
   }
 }

@@ -10,9 +10,8 @@ class Wasp2 extends Wasp {
     waspRect = Rect.fromLTWH(x, y, game.tileSize * 1, game.tileSize * 1);
     flyingWasps = List<Sprite>();
 
-    //TODO: Add propser assets
-    flyingWasps.add(Sprite('wasp2.png'));
-    flyingWasps.add(Sprite('wasp2.png'));
-    deadWaspSprite = Sprite('wasp2.png');
+    flyingWasps.add(Sprite('wasp2_wing_up.png'));
+    flyingWasps.add(Sprite('wasp2_wing_down.png'));
+    deadWaspSprite = Sprite('wasp2_dead.png');
   }
 }

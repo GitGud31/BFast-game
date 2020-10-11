@@ -13,7 +13,6 @@ void main() async {
   await flameUtil.fullScreen();
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
-  //Todo: SharedPreferences
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
   Flame.images.loadAll(<String>[
@@ -24,7 +23,6 @@ void main() async {
     'home_screen.png',
     'how_to_play_screen.png',
     'credits_screen.png',
-    'logo.png',
     'Mode 1.png',
     'Mode 2.png',
     'Mode 3.png',
@@ -33,10 +31,18 @@ void main() async {
     'play button.png',
     'play again button.png',
     'callout.png',
-    'wasp1.png',
-    'wasp2.png',
-    'wasp3.png',
-    'wasp4.png',
+    'wasp1_wing_up.png',
+    'wasp1_wing_down.png',
+    'wasp1_dead.png',
+    'wasp2_wing_up.png',
+    'wasp2_wing_down.png',
+    'wasp2_dead.png',
+    'wasp3_wing_up.png',
+    'wasp3_wing_down.png',
+    'wasp3_dead.png',
+    'wasp4_wing_up.png',
+    'wasp4_wing_down.png',
+    'wasp4_dead.png',
     'wasp5.png',
     'long-grass.png',
     'mode_button.png',
