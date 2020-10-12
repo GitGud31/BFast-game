@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:BFast/components/credits-button.dart';
 import 'package:BFast/components/how-to-play-button.dart';
 import 'package:BFast/components/lives-display.dart';
-import 'package:BFast/components/long-grass-background.dart';
+import 'package:BFast/components/beehive-background.dart';
 import 'package:BFast/components/play-again-button.dart';
 import 'package:BFast/components/return-home-button.dart';
 import 'package:BFast/components/start-game-button.dart';

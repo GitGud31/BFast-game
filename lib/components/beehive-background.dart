@@ -9,13 +9,8 @@ class LongGrassBackground {
   Rect bgRect;
 
   LongGrassBackground(this.game) {
-    bgSprite = Sprite('long-grass.png');
-    bgRect = Rect.fromLTWH(
-      0,
-      game.screenSize.height - (game.tileSize * 23),
-      game.tileSize * 9,
-      game.tileSize * 23,
-    );
+    bgRect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
+    bgSprite = Sprite('beehive.png');
   }
 
   void render(Canvas c) {

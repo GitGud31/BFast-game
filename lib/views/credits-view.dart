@@ -21,7 +21,7 @@ class CreditsView {
       (game.screenSize.width - 2 * game.tileSize),
       (game.screenSize.height - 2 * game.tileSize),
     );
-    sprite = Sprite('credits_screen.png');
+    sprite = Sprite('extra_screen.png');
   }
 
   void render(Canvas canvas) {
@@ -31,10 +31,11 @@ class CreditsView {
 
   void update(double timeDelta) {
     textPainter.text = TextSpan(text: 'CREDITS', style: textStyle);
-
     textPainter.layout();
-
-    offset = Offset(game.tileSize * 2, game.tileSize * 2);
+    offset = Offset(
+      (game.screenSize.width / 2) - (textPainter.width / 2),
+      (textPainter.height * 2),
+    );
   }
 
   void initText() {
