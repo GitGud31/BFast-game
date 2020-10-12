@@ -4,7 +4,11 @@ import '../bfast-game.dart';
 
 class WaspSpawnerController {
   final BFast game;
+
+  //The upper limit on when to spawn flies.
   final int maxSpawnInterval = 1500;
+
+  //The lower limit on when to spawn flies.
   final int minSpawnInterval = 250;
   final int intervalChange = 3;
   final int maxWaspsOnScreen = 7;
@@ -41,7 +45,6 @@ class WaspSpawnerController {
         currentInterval -= (currentInterval * .04).toInt();
       }
       nextSpawn = nowTimestamp + currentInterval;
-      print(nextSpawn.toString());
     }
   }
 }

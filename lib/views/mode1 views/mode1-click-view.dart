@@ -19,6 +19,7 @@ class ClickView {
     initText();
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
     sprite = Sprite('click_screen.png');
+    // sprite = Sprite('click_screen2.png');
   }
 
   void render(Canvas canvas) {
@@ -28,15 +29,15 @@ class ClickView {
 
   void update(double timeDelta) {
     textPainter.text = TextSpan(text: 'CLICK', style: textStyle);
-
     textPainter.layout();
-
-    offset = Offset(game.tileSize * 2.5, game.screenSize.height / 4);
+    offset = Offset(
+      (game.screenSize.width / 2) - (textPainter.width / 2),
+      (game.screenSize.height * .25) - (textPainter.height / 2),
+    );
   }
 
   void onTapDown() {
     game.stopwatchController.stopStopwatch();
-    print('${game.stopwatchController.stopwatch.isRunning}');
     game.activeView = Views.score;
   }
 

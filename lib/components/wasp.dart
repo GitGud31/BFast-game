@@ -86,7 +86,6 @@ class Wasp {
 
       if (game.activeView == Views.playing) {
         game.score += 1;
-
         if (game.score > (game.sharedPreferences.getInt('highscore') ?? 0)) {
           game.sharedPreferences.setInt('highscore', game.score);
           game.highscoreDisplay.updateHighscore();

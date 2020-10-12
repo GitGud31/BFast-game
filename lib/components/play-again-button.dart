@@ -13,12 +13,14 @@ class PlayAgainButton {
   Sprite sprite;
 
   PlayAgainButton(this.game) {
-    sprite = Sprite('play_again_button.png', x: 0, y: 0);
+    // sprite = Sprite('play_again_circle_button.png', x: 0, y: 0);
+    sprite = Sprite('play_again_long_button.png', x: 0, y: 0);
     rect = Rect.fromLTWH(
-        game.tileSize * 5,
-        (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
-        game.tileSize * 2.5,
-        game.tileSize * 2.5);
+      game.screenSize.width - (game.tileSize * 4),
+      (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
+      game.tileSize * 2.6,
+      game.tileSize * 1.8,
+    );
   }
 
   void render(Canvas canvas) {

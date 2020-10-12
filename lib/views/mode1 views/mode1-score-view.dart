@@ -18,6 +18,7 @@ class ScoreView {
     initText();
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
     sprite = Sprite('score_toosoon_screen.png');
+    // sprite = Sprite('score_screen.png');
   }
 
   void render(Canvas canvas) {
@@ -27,9 +28,12 @@ class ScoreView {
 
   void update(double timeDelta) {
     int score = game.stopwatchController.timeElapsed;
-    textPainter.text = TextSpan(text: 'Score: $score ms', style: textStyle);
+    textPainter.text = TextSpan(text: 'SCORE: $score ms', style: textStyle);
     textPainter.layout();
-    offset = Offset(game.tileSize / 2, game.screenSize.height / 4);
+    offset = Offset(
+      (game.screenSize.width / 2) - (textPainter.width / 2),
+      (game.screenSize.height * .25) - (textPainter.height / 2),
+    );
   }
 
   void initText() {
@@ -42,7 +46,7 @@ class ScoreView {
 
     textStyle = TextStyle(
       color: Color(0xffffffff),
-      fontSize: 50,
+      fontSize: 40,
       fontWeight: FontWeight.bold,
       shadows: <Shadow>[
         Shadow(

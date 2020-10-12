@@ -17,6 +17,7 @@ class LostView {
     initText();
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
     sprite = Sprite('lost_screen.png');
+    // sprite = Sprite('lost_screen2.png');
   }
 
   void render(Canvas canvas) {
@@ -27,7 +28,10 @@ class LostView {
   void update(double t) {
     textPainter.text = TextSpan(text: 'YOU LOST', style: textStyle);
     textPainter.layout();
-    offset = Offset(game.tileSize / 2, game.screenSize.height / 4);
+    offset = Offset(
+      (game.screenSize.width / 2) - (textPainter.width / 2),
+      (game.screenSize.height * .25) - (textPainter.height / 2),
+    );
   }
 
   void initText() {

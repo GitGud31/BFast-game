@@ -19,6 +19,7 @@ class WaitView {
     initText();
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
     sprite = Sprite('wait_screen.png');
+    // sprite = Sprite('wait_screen2.png');
   }
 
   void render(Canvas canvas) {
@@ -29,7 +30,10 @@ class WaitView {
   void update(double timeDelta) {
     textPainter.text = TextSpan(text: 'WAIT', style: textStyle);
     textPainter.layout();
-    offset = Offset(game.tileSize * 2.8, game.screenSize.height / 4);
+    offset = Offset(
+      (game.screenSize.width / 2) - (textPainter.width / 2),
+      (game.screenSize.height * .25) - (textPainter.height / 2),
+    );
   }
 
   void onTapDown() {

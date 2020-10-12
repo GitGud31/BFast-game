@@ -12,12 +12,13 @@ class StartGameButton {
   Sprite sprite;
 
   StartGameButton(this.game) {
-    sprite = Sprite('long_button.png');
+    // sprite = Sprite('start_circle_button.png');
+    sprite = Sprite('start_long_button.png');
     rect = Rect.fromLTWH(
-      game.tileSize * 5,
+      game.screenSize.width - (game.tileSize * 4),
       (game.screenSize.height / 1.5) - (game.tileSize * 1.5),
-      game.tileSize * 2,
-      game.tileSize * 2,
+      game.tileSize * 2.6,
+      game.tileSize * 1.8,
     );
   }
 

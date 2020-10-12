@@ -7,12 +7,17 @@ class Wasp5 extends Wasp {
   double get speed => game.tileSize * 5;
 
   Wasp5(BFast game, double x, double y) : super(game) {
-    waspRect = Rect.fromLTWH(x, y, game.tileSize * 1, game.tileSize * 1);
+    resize(x: x, y: y);
     flyingWasps = List<Sprite>();
 
-    //TODO: add proper assets
-    flyingWasps.add(Sprite('wasp5.png'));
-    flyingWasps.add(Sprite('wasp5.png'));
-    deadWaspSprite = Sprite('wasp5.png');
+    flyingWasps.add(Sprite('wasp5_wing_up.png'));
+    flyingWasps.add(Sprite('wasp5_wing_down.png'));
+    deadWaspSprite = Sprite('wasp5_dead.png');
+  }
+
+  void resize({double x, double y}) {
+    x ??= (waspRect?.left) ?? 0;
+    y ??= (waspRect?.top) ?? 0;
+    waspRect = Rect.fromLTWH(x, y, game.tileSize * 1, game.tileSize * 1);
   }
 }

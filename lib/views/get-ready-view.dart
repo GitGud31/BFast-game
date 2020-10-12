@@ -28,10 +28,11 @@ class GetReadyView {
 
   void update(double timeDelta) {
     textPainter.text = TextSpan(text: 'GET READY', style: textStyle);
-
     textPainter.layout();
-
-    offset = Offset(game.tileSize * 1.5, game.screenSize.height / 4);
+    offset = Offset(
+      (game.screenSize.width / 2) - (textPainter.width / 2),
+      (game.screenSize.height * .25) - (textPainter.height / 2),
+    );
   }
 
   void initText() {
