@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:BFast/components/wasp.dart';
+import 'package:BFast/components/wasps-models/wasp.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 

@@ -2,19 +2,19 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 
-import '../bfast-game.dart';
-import '../views.dart';
+import '../../bfast-game.dart';
+import '../../views.dart';
 
-class Mode2Button {
+class Mode1Button {
   final BFast game;
   Rect rect;
   Sprite sprite;
 
-  Mode2Button(this.game) {
-    sprite = Sprite('mode2_button.png');
+  Mode1Button(this.game) {
+    sprite = Sprite('mode1_button.png');
     rect = Rect.fromLTWH(
-      game.tileSize * 4.1,
-      (game.screenSize.height / 2.33),
+      game.tileSize * 2,
+      (game.screenSize.height / 3),
       game.tileSize * 3.4,
       game.tileSize * 3,
     );

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:BFast/bfast-game.dart';
 import 'package:flame/sprite.dart';
-import '../views.dart';
+import '../../views.dart';
 
 class ReturnHomeButton {
   final BFast game;

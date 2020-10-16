@@ -1,7 +1,7 @@
 import 'dart:ui';
-import 'package:BFast/components/wasp.dart';
+import 'package:BFast/components/wasps-models/wasp.dart';
 import 'package:flame/sprite.dart';
-import '../bfast-game.dart';
+import '../../bfast-game.dart';
 
 class Wasp4 extends Wasp {
   double get speed => game.tileSize * 4.2;

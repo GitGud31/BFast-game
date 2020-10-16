@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
-import '../bfast-game.dart';
-import '../modes.dart';
-import '../views.dart';
+import '../../bfast-game.dart';
+import '../../modes.dart';
+import '../../views.dart';
 
 class PlayAgainButton {
   final BFast game;

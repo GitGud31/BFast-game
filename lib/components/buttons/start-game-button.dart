@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 
-import '../bfast-game.dart';
-import '../modes.dart';
-import '../views.dart';
+import '../../bfast-game.dart';
+import '../../modes.dart';
+import '../../views.dart';
 
 class StartGameButton {
   final BFast game;

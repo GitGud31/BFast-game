@@ -3,20 +3,20 @@ import 'dart:ui';
 import 'package:BFast/bfast-game.dart';
 import 'package:flame/sprite.dart';
 
-import '../views.dart';
+import '../../views.dart';
 
-class HowToPlayButton {
+class CreditsButton {
   final BFast game;
   Rect rect;
   Sprite sprite;
 
-  HowToPlayButton(this.game) {
-    sprite = Sprite('mode_button.png');
+  CreditsButton(this.game) {
+    sprite = Sprite('credits.png');
     rect = Rect.fromLTWH(
-      game.tileSize * .25,
-      game.screenSize.height - (game.tileSize * 1.25),
-      game.tileSize,
-      game.tileSize,
+      game.screenSize.width - (game.tileSize * 2),
+      game.screenSize.height - (game.tileSize * 2),
+      game.tileSize * 1.6,
+      game.tileSize * 1.8,
     );
   }
 
@@ -27,6 +27,6 @@ class HowToPlayButton {
   void update(double timeDelta) {}
 
   void onTapDown() {
-    game.activeView = Views.howToPlay;
+    game.activeView = Views.credits;
   }
 }

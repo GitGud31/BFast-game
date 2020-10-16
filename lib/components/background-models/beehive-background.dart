@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
 
-import '../bfast-game.dart';
+import '../../bfast-game.dart';
 
 class LongGrassBackground {
   final BFast game;

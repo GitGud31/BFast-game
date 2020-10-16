@@ -2,13 +2,13 @@ import 'dart:math';
 import 'dart:ui';
 
 //TODO: Make one export file of each folder
-import 'package:BFast/components/credits-button.dart';
-import 'package:BFast/components/how-to-play-button.dart';
-import 'package:BFast/components/lives-display.dart';
-import 'package:BFast/components/beehive-background.dart';
-import 'package:BFast/components/play-again-button.dart';
-import 'package:BFast/components/return-home-button.dart';
-import 'package:BFast/components/start-game-button.dart';
+import 'package:BFast/components/buttons/credits-button.dart';
+import 'package:BFast/components/buttons/how-to-play-button.dart';
+import 'package:BFast/components/displays/lives-display.dart';
+import 'package:BFast/components/background-models/beehive-background.dart';
+import 'package:BFast/components/buttons/play-again-button.dart';
+import 'package:BFast/components/buttons/return-home-button.dart';
+import 'package:BFast/components/buttons/start-game-button.dart';
 import 'package:BFast/controllers/random-timer-controller.dart';
 import 'package:BFast/controllers/stopwatch-controller.dart';
 import 'package:BFast/modes.dart';
@@ -16,8 +16,8 @@ import 'package:BFast/views/mode1%20views/mode1-click-view.dart';
 import 'package:BFast/views/credits-view.dart';
 import 'package:BFast/views/get-ready-view.dart';
 import 'package:BFast/views/home-view.dart';
-import 'package:BFast/components/mode1-button.dart';
-import 'package:BFast/views/hot-to-play-view.dart';
+import 'package:BFast/components/buttons/mode1-button.dart';
+import 'package:BFast/views/how-to-play-view.dart';
 import 'package:BFast/views/mode1%20views/mode1-too-soon-view.dart';
 import 'package:BFast/views/mode2%20views/lost-view.dart';
 import 'package:flame/flame.dart';
@@ -25,22 +25,22 @@ import 'package:flame/game/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'components/background.dart';
-import 'components/display-highscore.dart';
-import 'components/mode2-button.dart';
-import 'components/mode3-button.dart';
-import 'components/mode4-button.dart';
-import 'components/score-display.dart';
-import 'components/wasp1.dart';
-import 'components/wasp2.dart';
-import 'components/wasp3.dart';
-import 'components/wasp4.dart';
-import 'components/wasp5.dart';
+import 'components/background-models/background.dart';
+import 'components/displays/display-highscore.dart';
+import 'components/buttons/mode2-button.dart';
+import 'components/buttons/mode3-button.dart';
+import 'components/buttons/mode4-button.dart';
+import 'components/displays/score-display.dart';
+import 'components/wasps-models/wasp1.dart';
+import 'components/wasps-models/wasp2.dart';
+import 'components/wasps-models/wasp3.dart';
+import 'components/wasps-models/wasp4.dart';
+import 'components/wasps-models/wasp5.dart';
 import 'controllers/wasp-spawner-controller.dart';
 import 'views.dart';
 import 'views/mode1 views/mode1-score-view.dart';
 import 'views/mode1 views/mode1-wait-view.dart';
-import 'components/wasp.dart';
+import 'components/wasps-models/wasp.dart';
 
 class BFast extends Game {
   //Screen

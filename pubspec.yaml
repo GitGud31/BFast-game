@@ -75,6 +75,7 @@ flutter:
     - assets/images/wasp5_dead.png
     - assets/images/long-grass.png
     - assets/images/logo_circle.png
+    - assets/images/logo.png
     - assets/images/sad_bee.png
     - assets/images/good_job_bee.png
     - assets/images/mode_button.png
@@ -89,5 +90,8 @@ flutter:
     - assets/images/mode2_button.png
     - assets/images/mode3_button.png
     - assets/images/mode4_button.png
+    - assets/images/how_to_play.png
+    - assets/images/how_to_play2.png
+    - assets/images/credits.png
 
 

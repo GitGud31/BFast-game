@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:BFast/views/callout.dart';
 import 'package:flame/sprite.dart';
 
-import '../bfast-game.dart';
-import '../views.dart';
+import '../../bfast-game.dart';
+import '../../views.dart';
 
 class Wasp {
   final BFast game;

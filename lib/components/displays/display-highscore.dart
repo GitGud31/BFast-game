@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/painting.dart';
 
-import '../bfast-game.dart';
+import '../../bfast-game.dart';
 
 class HighscoreDisplay {
   final BFast game;
