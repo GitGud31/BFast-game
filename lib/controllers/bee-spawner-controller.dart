@@ -1,23 +1,24 @@
+import 'package:BFast/components/bees-models/bee.dart';
 import 'package:BFast/components/wasps-models/wasp.dart';
 
 import '../bfast-game.dart';
 
-class WaspSpawnerController {
+class BeeSpawnerController {
   final BFast game;
 
-  //The upper limit on when to spawn wasps.
-  final int maxSpawnInterval = 1500;
+  //The upper limit on when to spawn bees.
+  final int maxSpawnInterval = 1700;
 
-  //The lower limit on when to spawn wasps.
-  final int minSpawnInterval = 250;
+  //The lower limit on when to spawn bees.
+  final int minSpawnInterval = 350;
   final int intervalChange = 3;
-  final int maxWaspsOnScreen = 7;
+  final int maxBeesOnScreen = 4;
   int currentInterval;
   int nextSpawn;
 
-  WaspSpawnerController(this.game) {
+  BeeSpawnerController(this.game) {
     start();
-    game.spawnWasp();
+    game.spawnBee();
   }
 
   void start() {
@@ -27,19 +28,19 @@ class WaspSpawnerController {
   }
 
   void killAll() {
-    game.wasps.forEach((Wasp wasp) => wasp.isDead = true);
+    game.bees.forEach((Bee bee) => bee.isDead = true);
   }
 
   void update(double t) {
     int nowTimestamp = DateTime.now().millisecondsSinceEpoch;
 
-    int livingWasps = 0;
-    game.wasps.forEach((Wasp wasp) {
-      if (!wasp.isDead) livingWasps += 1;
+    int livingBees = 0;
+    game.bees.forEach((Bee bee) {
+      if (!bee.isDead) livingBees += 1;
     });
 
-    if (nowTimestamp >= nextSpawn && livingWasps < maxWaspsOnScreen) {
-      game.spawnWasp();
+    if (nowTimestamp >= nextSpawn && livingBees < maxBeesOnScreen) {
+      game.spawnBee();
       if (currentInterval > minSpawnInterval) {
         currentInterval -= intervalChange;
         currentInterval -= (currentInterval * .04).toInt();

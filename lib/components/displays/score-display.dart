@@ -34,9 +34,9 @@ class ScoreDisplay {
   }
 
   void update(double t) {
-    if ((painter.text?.text ?? '') != game.score.toString()) {
+    if ((painter.text?.text ?? '') != game.scoreMode2.toString()) {
       painter.text = TextSpan(
-        text: game.score.toString(),
+        text: game.scoreMode2.toString(),
         style: textStyle,
       );
 

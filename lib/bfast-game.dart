@@ -5,10 +5,11 @@ import 'dart:ui';
 import 'package:BFast/components/buttons/credits-button.dart';
 import 'package:BFast/components/buttons/how-to-play-button.dart';
 import 'package:BFast/components/displays/lives-display.dart';
-import 'package:BFast/components/background-models/beehive-background.dart';
+import 'package:BFast/components/background-models/mode2background.dart.dart';
 import 'package:BFast/components/buttons/play-again-button.dart';
 import 'package:BFast/components/buttons/return-home-button.dart';
 import 'package:BFast/components/buttons/start-game-button.dart';
+import 'package:BFast/controllers/bee-spawner-controller.dart';
 import 'package:BFast/controllers/random-timer-controller.dart';
 import 'package:BFast/controllers/stopwatch-controller.dart';
 import 'package:BFast/modes.dart';
@@ -26,6 +27,13 @@ import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/background-models/background.dart';
+import 'components/background-models/mode3background.dart';
+import 'components/bees-models/bee.dart';
+import 'components/bees-models/bee1.dart';
+import 'components/bees-models/bee2.dart';
+import 'components/bees-models/bee3.dart';
+import 'components/bees-models/bee4.dart';
+import 'components/bees-models/bee5.dart';
 import 'components/displays/display-highscore.dart';
 import 'components/buttons/mode2-button.dart';
 import 'components/buttons/mode3-button.dart';
@@ -48,7 +56,8 @@ class BFast extends Game {
   double tileSize;
 
   Random random;
-  int score;
+  int scoreMode2;
+  int scoreMode3;
   int lives;
   bool isHandled = false;
 
@@ -56,12 +65,15 @@ class BFast extends Game {
   RandomTimerController randomTimerController;
   StopwatchController stopwatchController;
   WaspSpawnerController waspSpawnerController;
+  BeeSpawnerController beeSpawnerController;
 
   //
   List<Wasp> wasps;
+  List<Bee> bees;
 
   //Shared preferences
-  final SharedPreferences sharedPreferences;
+  final SharedPreferences scoreSaveMode2;
+  final SharedPreferences scoreSaveMode3;
 
   //Views
   //TODO: change back to home
@@ -76,7 +88,8 @@ class BFast extends Game {
   ScoreView scoreView;
   HowToPlayView howToPlayView;
   CreditsView creditsView;
-  LongGrassBackground longGrassBackground;
+  Mode2background mode2Background;
+  Mode3Background mode3Background;
   LostView lostView;
 
   //buttons
@@ -95,7 +108,7 @@ class BFast extends Game {
   HighscoreDisplay highscoreDisplay;
   LivesDisplay livesDisplay;
 
-  BFast(this.sharedPreferences) {
+  BFast(this.scoreSaveMode2, this.scoreSaveMode3) {
     initialize();
   }
 
@@ -126,6 +139,31 @@ class BFast extends Game {
         break;
       case 4:
         wasps.add(Wasp5(this, x, y));
+        break;
+    }
+  }
+
+  void spawnBee() {
+    double x = random.nextDouble() * (screenSize.width - (tileSize * 2.025));
+    double y =
+        (random.nextDouble() * (screenSize.height - (tileSize * 2.025))) +
+            (tileSize * 1.5);
+
+    switch (random.nextInt(5)) {
+      case 0:
+        bees.add(Bee1(this, x, y));
+        break;
+      case 1:
+        bees.add(Bee2(this, x, y));
+        break;
+      case 2:
+        bees.add(Bee3(this, x, y));
+        break;
+      case 1:
+        bees.add(Bee4(this, x, y));
+        break;
+      case 4:
+        bees.add(Bee5(this, x, y));
         break;
     }
   }
@@ -184,11 +222,21 @@ class BFast extends Game {
 
     //PLAYING
     if (activeView == Views.playing) {
-      longGrassBackground.render(canvas);
-      wasps.forEach((Wasp wasp) => wasp.render(canvas));
-      scoreDisplay.render(canvas);
-      highscoreDisplay.render(canvas);
-      livesDisplay.render(canvas);
+      if (activeMode == Modes.mode2) {
+        mode2Background.render(canvas);
+        wasps.forEach((Wasp wasp) => wasp.render(canvas));
+        scoreDisplay.render(canvas);
+        highscoreDisplay.render(canvas);
+        livesDisplay.render(canvas);
+      }
+      if (activeMode == Modes.mode3) {
+        mode3Background.render(canvas);
+        bees.forEach((Bee bee) => bee.render(canvas));
+        wasps.forEach((Wasp wasp) => wasp.render(canvas));
+        scoreDisplay.render(canvas);
+        highscoreDisplay.render(canvas);
+        livesDisplay.render(canvas);
+      }
     }
 
     //LOST
@@ -205,6 +253,7 @@ class BFast extends Game {
     if (activeView == Views.playing) {
       scoreDisplay.update(t);
       livesDisplay.update(t);
+      //TODO: investigate for mode 3
     }
 
     //WAIT
@@ -247,13 +296,30 @@ class BFast extends Game {
       wasps.forEach((Wasp wasp) => wasp.isDead = true);
       wasps.removeWhere((Wasp wasp) => wasp.isOffScreen);
     }
+
+    //PLAYING (MODE 3)
+    if (activeView == Views.playing) {
+      beeSpawnerController.update(t);
+      bees.forEach((Bee bees) => bees.update(t));
+      bees.removeWhere((Bee bees) => bees.isOffScreen);
+    }
+
+    //LOST (MODE 3)
+    if (activeView == Views.lost) {
+      lostView.update(t);
+      bees.forEach((Bee bee) => bee.isDead = true);
+      bees.removeWhere((Bee bee) => bee.isOffScreen);
+      //TODO: kill all bees
+    }
   }
 
   void initialize() async {
     random = Random();
-    score = 0;
+    scoreMode2 = 0;
+    scoreMode3 = 0;
     lives = 3;
     wasps = List<Wasp>();
+    bees = List<Bee>();
 
     resize(await Flame.util.initialDimensions());
 
@@ -266,10 +332,12 @@ class BFast extends Game {
     randomTimerController = RandomTimerController(this);
     stopwatchController = StopwatchController(this);
     waspSpawnerController = WaspSpawnerController(this);
+    beeSpawnerController = BeeSpawnerController(this);
 
     //init views
     background = Background(this);
-    longGrassBackground = LongGrassBackground(this);
+    mode2Background = Mode2background(this);
+    mode3Background = Mode3Background(this);
     homeView = HomeView(this);
     getReadyView = GetReadyView(this);
     waitView = WaitView(this);
@@ -348,6 +416,7 @@ class BFast extends Game {
       if (activeView == Views.playing && !didHitWasp) {
         //TODO: Implement SOUND
 
+        //TODO: add life loss check for mode3
         lives -= 1;
         if (lives == 0) activeView = Views.lost;
       }

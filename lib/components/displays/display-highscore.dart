@@ -32,7 +32,7 @@ class HighscoreDisplay {
   }
 
   void updateHighscore() {
-    int highscore = game.sharedPreferences.getInt('highscore') ?? 0;
+    int highscore = game.scoreSaveMode2.getInt('highscore') ?? 0;
 
     painter.text = TextSpan(
       text: 'High-score: ' + highscore.toString(),
@@ -46,4 +46,31 @@ class HighscoreDisplay {
       game.tileSize * .25,
     );
   }
+
+  // void updateHighscore() {
+  //   int highscore2 = game.scoreSaveMode2.getInt('highscore2') ?? 0;
+  //   int highscore3 = game.scoreSaveMode2.getInt('highscore3') ?? 0;
+
+  //   if (game.activeMode == Modes.mode2) {
+  //     painter.text = TextSpan(
+  //         text: 'Highscore: ' + highscore2.toString(), style: textStyle);
+  //     painter.layout();
+
+  //     position = Offset(
+  //       game.screenSize.width - (game.tileSize * .25) - painter.width,
+  //       game.tileSize * .25,
+  //     );
+  //   }
+
+  //   if (game.activeMode == Modes.mode3) {
+  //     painter.text = TextSpan(
+  //         text: 'Highscore: ' + highscore3.toString(), style: textStyle);
+  //     painter.layout();
+
+  //     position = Offset(
+  //       game.screenSize.width - (game.tileSize * .25) - painter.width,
+  //       game.tileSize * .25,
+  //     );
+  //   }
+  // }
 }

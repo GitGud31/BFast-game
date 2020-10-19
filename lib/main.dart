@@ -13,7 +13,8 @@ void main() async {
   await flameUtil.fullScreen();
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  SharedPreferences scoreSaveMode2 = await SharedPreferences.getInstance();
+  SharedPreferences scoreSaveMode3 = await SharedPreferences.getInstance();
 
   Flame.images.loadAll(<String>[
     'click_screen.png',
@@ -46,6 +47,8 @@ void main() async {
     'mode_button.png',
     'logo_circle.png',
     'logo.png',
+    'logo2.png',
+    'logo3.png',
     'lost_screen.png',
     'sad_bee.png',
     'good_job_bee.png',
@@ -65,9 +68,15 @@ void main() async {
     'mode2_button.png',
     'mode3_button.png',
     'mode4_button.png',
+    'bee1.png',
+    'bee2.png',
+    'bee3.png',
+    'bee4.png',
+    'bee5.png',
+    'beehive_3.png',
   ]);
 
-  BFast game = BFast(sharedPreferences);
+  BFast game = BFast(scoreSaveMode2, scoreSaveMode3);
   runApp(game.widget);
 
   TapGestureRecognizer tapGesutureReconizer = TapGestureRecognizer();

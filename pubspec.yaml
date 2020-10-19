@@ -76,6 +76,8 @@ flutter:
     - assets/images/long-grass.png
     - assets/images/logo_circle.png
     - assets/images/logo.png
+    - assets/images/logo2.png
+    - assets/images/logo3.png
     - assets/images/sad_bee.png
     - assets/images/good_job_bee.png
     - assets/images/mode_button.png
@@ -93,5 +95,9 @@ flutter:
     - assets/images/how_to_play.png
     - assets/images/how_to_play2.png
     - assets/images/credits.png
-
-
+    - assets/images/bee1.png
+    - assets/images/bee2.png
+    - assets/images/bee3.png
+    - assets/images/bee4.png
+    - assets/images/bee5.png
+    - assets/images/beehive_3.png

@@ -3,14 +3,14 @@ import 'package:flame/sprite.dart';
 
 import '../../bfast-game.dart';
 
-class LongGrassBackground {
+class Mode3Background {
   final BFast game;
   Sprite bgSprite;
   Rect bgRect;
 
-  LongGrassBackground(this.game) {
+  Mode3Background(this.game) {
     bgRect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
-    bgSprite = Sprite('beehive.png');
+    bgSprite = Sprite('beehive_3.png');
   }
 
   void render(Canvas c) {

@@ -10,14 +10,14 @@ class HomeView {
   Sprite sprite;
 
   HomeView(this.game) {
-    // sprite = Sprite('logo_circle.png');
     rect = Rect.fromLTWH(
       (game.screenSize.width / 2) - (game.tileSize * 1.7),
       (game.screenSize.height / 3) - (game.tileSize * 4),
       game.tileSize * 3.5,
       game.tileSize * 3,
     );
-    sprite = Sprite('logo.png');
+    sprite = Sprite('logo3.png');
+    // sprite = Sprite('logo_circle.png');
   }
 
   void render(Canvas canvas) {

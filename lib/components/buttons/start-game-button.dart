@@ -37,13 +37,15 @@ class StartGameButton {
     if (game.activeMode == Modes.mode2) {
       game.waspSpawnerController.start();
       game.activeView = Views.playing;
-      game.score = 0;
+      game.scoreMode2 = 0;
       game.lives = 3;
     }
 
     //TODO
     if (game.activeMode == Modes.mode3) {
-      game.score = 0;
+      game.beeSpawnerController.start();
+      game.activeView = Views.playing;
+      game.scoreMode3 = 0;
       game.lives = 3;
     }
 

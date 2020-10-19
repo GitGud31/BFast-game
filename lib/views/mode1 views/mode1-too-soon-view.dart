@@ -16,9 +16,9 @@ class TooSoonView {
 
   TooSoonView(this.game) {
     initText();
-    sprite = Sprite('score_toosoon_screen.png');
-    // sprite = Sprite('too_soon_screen.png');
     rect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
+    // sprite = Sprite('score_toosoon_screen.png');
+    sprite = Sprite('too_soon_screen.png');
   }
 
   void render(Canvas canvas) {
@@ -31,7 +31,7 @@ class TooSoonView {
     textPainter.layout();
     offset = Offset(
       (game.screenSize.width / 2) - (textPainter.width / 2),
-      (game.screenSize.height * .25) - (textPainter.height / 2),
+      (game.screenSize.height * .20) - (textPainter.height / 2),
     );
   }
 
