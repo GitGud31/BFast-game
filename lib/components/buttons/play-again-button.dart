@@ -46,6 +46,7 @@ class PlayAgainButton {
     //TODO
     if (game.activeMode == Modes.mode3) {
       game.beeSpawnerController.start();
+      game.waspSpawnerController.start();
       game.activeView = Views.playing;
       game.scoreMode3 = 0;
       game.lives = 3;

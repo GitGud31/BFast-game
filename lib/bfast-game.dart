@@ -253,7 +253,6 @@ class BFast extends Game {
     if (activeView == Views.playing) {
       scoreDisplay.update(t);
       livesDisplay.update(t);
-      //TODO: investigate for mode 3
     }
 
     //WAIT
@@ -309,7 +308,6 @@ class BFast extends Game {
       lostView.update(t);
       bees.forEach((Bee bee) => bee.isDead = true);
       bees.removeWhere((Bee bee) => bee.isOffScreen);
-      //TODO: kill all bees
     }
   }
 
@@ -416,7 +414,6 @@ class BFast extends Game {
       if (activeView == Views.playing && !didHitWasp) {
         //TODO: Implement SOUND
 
-        //TODO: add life loss check for mode3
         lives -= 1;
         if (lives == 0) activeView = Views.lost;
       }

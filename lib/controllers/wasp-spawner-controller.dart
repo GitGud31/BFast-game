@@ -21,7 +21,7 @@ class WaspSpawnerController {
   }
 
   void start() {
-    // killAll();
+    killAll();
     currentInterval = maxSpawnInterval;
     nextSpawn = DateTime.now().millisecondsSinceEpoch + currentInterval;
   }

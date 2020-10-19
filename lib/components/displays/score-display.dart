@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/painting.dart';
 
 import '../../bfast-game.dart';
+import '../../modes.dart';
 
 class ScoreDisplay {
   final BFast game;
@@ -34,18 +35,35 @@ class ScoreDisplay {
   }
 
   void update(double t) {
-    if ((painter.text?.text ?? '') != game.scoreMode2.toString()) {
-      painter.text = TextSpan(
-        text: game.scoreMode2.toString(),
-        style: textStyle,
-      );
+    if (game.activeMode == Modes.mode2) {
+      if ((painter.text?.text ?? '') != game.scoreMode2.toString()) {
+        painter.text = TextSpan(
+          text: game.scoreMode2.toString(),
+          style: textStyle,
+        );
 
-      painter.layout();
+        painter.layout();
 
-      position = Offset(
-        (game.screenSize.width / 2) - (painter.width / 2),
-        (game.screenSize.height * .25) - (painter.height / 2),
-      );
+        position = Offset(
+          (game.screenSize.width / 2) - (painter.width / 2),
+          (game.screenSize.height * .25) - (painter.height / 2),
+        );
+      }
+    }
+    if (game.activeMode == Modes.mode3) {
+      if ((painter.text?.text ?? '') != game.scoreMode3.toString()) {
+        painter.text = TextSpan(
+          text: game.scoreMode3.toString(),
+          style: textStyle,
+        );
+
+        painter.layout();
+
+        position = Offset(
+          (game.screenSize.width / 2) - (painter.width / 2),
+          (game.screenSize.height * .25) - (painter.height / 2),
+        );
+      }
     }
   }
 }
