@@ -404,18 +404,28 @@ class BFast extends Game {
   void waspOnTapDownHandler(TapDownDetails d) {
     if (!isHandled) {
       bool didHitWasp = false;
+
       wasps.forEach((Wasp wasp) {
         if (wasp.waspRect.contains(d.globalPosition)) {
           wasp.onTapDown();
           isHandled = true;
           didHitWasp = true;
         }
-      });
-      if (activeView == Views.playing && !didHitWasp) {
         //TODO: Implement SOUND
+      });
 
-        lives -= 1;
-        if (lives == 0) activeView = Views.lost;
+      if (activeMode == Modes.mode2) {
+        if (activeView == Views.playing && !didHitWasp) {
+          lives -= 1;
+          if (lives == 0) activeView = Views.lost;
+        }
+      }
+
+      if (activeMode == Modes.mode3) {
+        //TODO: if bee position == wasp position:
+        //bee dies.
+        //update to dead_bee asset
+        //lose a live.
       }
     }
   }

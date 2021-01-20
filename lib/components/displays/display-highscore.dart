@@ -34,22 +34,6 @@ class HighscoreDisplay {
     painter.paint(c, position);
   }
 
-  // void updateHighscore() {
-  //   int highscore = game.scoreSaveMode2.getInt('highscore') ?? 0;
-
-  //   painter.text = TextSpan(
-  //     text: 'Highscore: ' + highscore.toString(),
-  //     style: textStyle,
-  //   );
-
-  //   painter.layout();
-
-  //   position = Offset(
-  //     game.screenSize.width - (game.tileSize * .25) - painter.width,
-  //     game.tileSize * .25,
-  //   );
-  // }
-
   void updateHighscore() {
     int highscore2 = game.scoreSaveMode2.getInt('highscore2') ?? 0;
     int highscore3 = game.scoreSaveMode3.getInt('highscore3') ?? 0;
